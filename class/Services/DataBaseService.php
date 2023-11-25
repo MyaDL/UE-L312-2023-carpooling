@@ -183,7 +183,7 @@ class DataBaseService
     /**
      * Create carpool post
      */
-    public function createCarpoolPost(string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    public function createCarpoolPost(int $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
     {
         $isOk = false;
 
