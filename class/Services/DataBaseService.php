@@ -70,7 +70,7 @@ class DataBaseService
     /**
      * Update an user.
      */
-    public function updateUser(string $id, string $firstname, string $lastname, string $email, DateTime $birthday): bool
+    public function updateUser(int $id, string $firstname, string $lastname, string $email, DateTime $birthday): bool
     {
         $isOk = false;
 
@@ -91,7 +91,7 @@ class DataBaseService
     /**
      * Delete an user.
      */
-    public function deleteUser(string $id): bool
+    public function deleteUser(int $id): bool
     {
         $isOk = false;
 
@@ -145,7 +145,7 @@ class DataBaseService
     /**
      * Update an car.
      */
-    public function updateCar(string $id, string $brand, string $model, string $color, int $door): bool
+    public function updateCar(int $id, string $brand, string $model, string $color, int $door): bool
     {
         $isOk = false;
 
@@ -166,7 +166,7 @@ class DataBaseService
     /**
      * Delete an car.
      */
-    public function deleteCar(string $id): bool
+    public function deleteCar(int $id): bool
     {
         $isOk = false;
 
@@ -221,7 +221,7 @@ class DataBaseService
     /**
      * Update a carpool post.
      */
-    public function updateCarpoolPost(string $id, string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    public function updateCarpoolPost(int $id, int $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
     {
         $isOk = false;
 
@@ -243,7 +243,7 @@ class DataBaseService
     /**
      * Delete a carpool post
      */
-    public function deleteCarpoolPost(string $id): bool
+    public function deleteCarpoolPost(int $id): bool
     {
         $isOk = false;
 
