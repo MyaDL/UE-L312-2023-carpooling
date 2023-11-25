@@ -179,4 +179,81 @@ class DataBaseService
 
         return $isOk;
     }
+
+    /**
+     * Create carpool post
+     */
+    public function createCarpoolPost(string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'creatorId' => $creatorId,
+            'startAddress' => $startAddress,
+            'arrivalAddress' => $arrivalAddress,
+            'startDateTime' => $startDateTime->format(DateTime::RFC3339),
+            'message' => $message,
+        ];
+        $sql = 'INSERT INTO posts (creatorId, startAddress, arrivalAddress, startDateTime, message) VALUES (:startAddress, :arrivalAddress, :startDateTime, :message)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all carpool posts.
+     */
+    public function getCarpoolPost(): array
+    {
+        $posts = [];
+
+        $sql = 'SELECT * FROM posts';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $posts = $results;
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Update a carpool post.
+     */
+    public function updateCarpoolPost(string $id, string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'creatorId' => $creatorId,
+            'startAddress' => $startAddress,
+            'arrivalAddress' => $arrivalAddress,
+            'startDateTime' => $startDateTime->format(DateTime::RFC3339),
+            'message' => $message,
+        ];
+        $sql = 'UPDATE posts SET startAdress = :startAddress, arrivalAddress = :arrivalAddress, startDateTime = :startDateTime, message = :message WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete a carpool post
+     */
+    public function deleteCarpoolPost(string $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM posts WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
 }
