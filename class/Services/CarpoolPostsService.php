@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Entities\CarpoolPost;
 use DateTime;
 
-class CarpoolPostService
+class CarpoolPostsService
 {
     /**
      * Create or update a carpool post
