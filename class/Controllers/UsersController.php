@@ -108,7 +108,7 @@ class UsersController
             if ($isOk) {
                 $html = 'Utilisateur supprimé avec succès.';
             } else {
-                $html = 'Erreur lors de la supression de l\'utilisateur.';
+                $html = 'Erreur lors de la suppression de l\'utilisateur.';
             }
         }
 
