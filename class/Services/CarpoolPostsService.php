@@ -38,11 +38,11 @@ class CarpoolPostsService
             foreach ($carpoolPostsDTO as $carpoolPostDTO) {
                 $carpoolPost = new CarpoolPost();
                 $carpoolPost->setId($carpoolPostDTO['id']);
-                $carpoolPost->setCreatorId($carpoolPostDTO['creatorId']);
-                $carpoolPost->setStartAddress($carpoolPostDTO['startAddress']);
-                $carpoolPost->setArrivalAddress($carpoolPostDTO['arrivalAddress']);
+                $carpoolPost->setCreatorId($carpoolPostDTO['creator_id']);
+                $carpoolPost->setStartAddress($carpoolPostDTO['start_address']);
+                $carpoolPost->setArrivalAddress($carpoolPostDTO['arrival_address']);
                 $carpoolPost->setMessage($carpoolPostDTO['message']);
-                $date = new DateTime($carpoolPostDTO['startDateTime']);
+                $date = new DateTime($carpoolPostDTO['start_date_time']);
                 if ($date !== false) {
                     $carpoolPost->setStartDateTime($date);
                 }

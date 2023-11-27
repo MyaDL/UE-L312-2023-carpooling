@@ -194,7 +194,7 @@ class DataBaseService
             'start_date_time' => $startDateTime->format(DateTime::RFC3339),
             'message' => $message,
         ];
-        $sql = 'INSERT INTO posts (creator_id, start_address, arrival_address, start_date_time, message) VALUES (:startAddress, :arrivalAddress, :startDateTime, :message)';
+        $sql = 'INSERT INTO posts (creator_id, start_address, arrival_address, start_date_time, message) VALUES (:creator_id, :start_address, :arrival_address, :start_date_time, :message)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -233,7 +233,7 @@ class DataBaseService
             'start_date_time' => $startDateTime->format(DateTime::RFC3339),
             'message' => $message,
         ];
-        $sql = 'UPDATE posts SET start_adress = :startAddress, arrival_address = :arrivalAddress, start_date_time = :startDateTime, message = :message WHERE id = :id;';
+        $sql = 'UPDATE posts SET creator_id =:creator_id, start_address = :start_address, arrival_address = :arrival_address, start_date_time = :start_date_time, message = :message WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -270,7 +270,7 @@ class DataBaseService
             'price' => $price,
             'payment_method' => $paymentMethod,
         ];
-        $sql = 'INSERT INTO bookings (driver_id, tel, price, payment_method) VALUES (:driverId, :tel, :price, :paymentMethod)';
+        $sql = 'INSERT INTO bookings (driver_id, tel, price, payment_method) VALUES (:driver_id, :tel, :price, :payment_method)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -308,7 +308,7 @@ class DataBaseService
             'price' => $price,
             'payment_method' => $paymentMethod,
         ];
-        $sql = 'UPDATE bookings SET tel = :tel, price = :price, payment_method = :paymentMethod WHERE id = :id;';
+        $sql = 'UPDATE bookings SET driver_id = :driver_id, tel = :tel, price = :price, payment_method = :payment_method WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 

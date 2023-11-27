@@ -37,12 +37,12 @@ class BookingsService
             foreach ($bookingsDTO as $bookingDTO) {
                 $booking = new Booking();
                 $booking->setId($bookingDTO['id']);
-                $booking->setDriverId($bookingDTO['driverId']);
+                $booking->setDriverId($bookingDTO['driver_id']);
                 $booking->setTel($bookingDTO['tel']);
                 $booking->setPrice($bookingDTO['price']);
-                $booking->setPaymentMethod($bookingDTO['paymentMethod']);
+                $booking->setPaymentMethod($bookingDTO['payment_method']);
             }
-            $bookings[] = $bookingDTO;
+            $bookings[] = $booking;
         }
 
         return $bookings;
