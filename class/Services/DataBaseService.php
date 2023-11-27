@@ -256,4 +256,79 @@ class DataBaseService
 
         return $isOk;
     }
+
+    /**
+     * Create booking
+     */
+    public function createBooking(string $driverId, string $tel, string $price, string $paymentMethod): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'driverId' => $driverId,
+            'tel' => $tel,
+            'price' => $price,
+            'paymentMethod' => $paymentMethod,
+        ];
+        $sql = 'INSERT INTO bookings (driverId, tel, price, paymentMethod) VALUES (:driverId, :tel, :price, :paymentMethod)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all bookings.
+     */
+    public function getBookings(): array
+    {
+        $bookings = [];
+
+        $sql = 'SELECT * FROM bookings';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $bookings = $results;
+        }
+
+        return $bookings;
+    }
+
+    /**
+     * Update a booking.
+     */
+    public function updateBooking(int $id, int $driverId, string $tel, string $price, string $paymentMethod): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'driverId' => $driverId,
+            'tel' => $tel,
+            'price' => $price,
+            'paymentMethod' => $paymentMethod,
+        ];
+        $sql = 'UPDATE bookings SET tel = :tel, price = :price, paymentMethod = :paymentMethod WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete a booking
+     */
+    public function deleteBooking(int $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM bookings WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
 }
