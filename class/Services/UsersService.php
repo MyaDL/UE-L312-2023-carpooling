@@ -10,7 +10,7 @@ class UsersService
     /**
      * Create or update an user.
      */
-    public function setUser(?int $id, string $firstname, string $lastname, string $email, string $birthday): bool
+    public function setUser(?string $id, string $firstname, string $lastname, string $email, string $birthday): bool
     {
         $isOk = false;
 
@@ -55,7 +55,7 @@ class UsersService
     /**
      * Delete an user.
      */
-    public function deleteUser(int $id): bool
+    public function deleteUser(string $id): bool
     {
         $isOk = false;
 

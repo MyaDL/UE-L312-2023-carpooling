@@ -10,12 +10,12 @@ class Car
     private $color;
     private $door;
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -50,12 +50,12 @@ class Car
         $this->color = $color;
     }
 
-    public function getDoor(): int
+    public function getDoor(): string
     {
         return $this->door;
     }
 
-    public function setDoor(int $door): void
+    public function setDoor(string $door): void
     {
         $this->door = $door;
     }

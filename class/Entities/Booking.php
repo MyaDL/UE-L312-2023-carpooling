@@ -10,22 +10,22 @@ class Booking
     private $price;
     private $paymentMethod;
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
 
-    public function getDriverId(): int
+    public function getDriverId(): string
     {
         return $this->driverId;
     }
 
-    public function setDriverId(int $driverId): void
+    public function setDriverId(string $driverId): void
     {
         $this->driverId = $driverId;
     }
@@ -40,12 +40,12 @@ class Booking
         $this->tel = $tel;
     }
 
-    public function getPrice(): int
+    public function getPrice(): string
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): void
+    public function setPrice(string $price): void
     {
         $this->price = $price;
     }
