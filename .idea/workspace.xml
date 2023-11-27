@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-service-database: code booking service file and update data base service file">
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="carpool-pos-service: correction data base service file">
       <change afterPath="$PROJECT_DIR$/carpool_posts_create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carpool_posts_delete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carpool_posts_read.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carpool_posts_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Services/DataBaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/DataBaseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_delete.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +86,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\MAMP\htdocs\UE-L312-2023-carpooling" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -111,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701090097653</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="carpool-pos-service: correction data base service file">
+      <option name="closed" value="true" />
+      <created>1701091403220</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701091403220</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +161,7 @@
     <MESSAGE value="carpool-post-model: code carpool post entity and carpool post service" />
     <MESSAGE value="carpool-post-model: code carpool post entity, carpool post service, sql file post and update database service file" />
     <MESSAGE value="booking-service-database: code booking service file and update data base service file" />
-    <option name="LAST_COMMIT_MESSAGE" value="booking-service-database: code booking service file and update data base service file" />
+    <MESSAGE value="carpool-pos-service: correction data base service file" />
+    <option name="LAST_COMMIT_MESSAGE" value="carpool-pos-service: correction data base service file" />
   </component>
 </project>
