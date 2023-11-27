@@ -10,7 +10,7 @@ class CarpoolPostsService
     /**
      * Create or update a carpool post
      */
-    public function setCarpoolPost(?string $id, string $creatorId, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): bool
+    public function setCarpoolPost(?int $id, int $creatorId, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): bool
     {
         $isOk = false;
 
@@ -56,7 +56,7 @@ class CarpoolPostsService
     /**
      * Delete a carpool post
      */
-    public function deleteCarpoolPost(string $id): bool
+    public function deleteCarpoolPost(int $id): bool
     {
         $isOk = false;
 

@@ -95,7 +95,7 @@ class CarsController
     }
 
     /**
-     * Delete an car.
+     * Delete a car.
      */
     public function deleteCar(): string
     {
