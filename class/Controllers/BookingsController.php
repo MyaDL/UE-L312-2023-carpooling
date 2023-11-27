@@ -49,7 +49,7 @@ class BookingsController
         // Get all bookings :
         $bookingsService = new BookingsService();
         $bookings = $bookingsService->getBookings();
-
+        
         // Get html :
         foreach ($bookings as $booking) {
             $html .=
@@ -57,7 +57,7 @@ class BookingsController
                 $booking->getDriverId() . ' ' .
                 $booking->getTel() . ' ' .
                 $booking->getPrice() . ' ' .
-                $booking->getgetPaymentMethodDoor() . '<br />';
+                $booking->getPaymentMethod() . '<br />';
         }
 
         return $html;
