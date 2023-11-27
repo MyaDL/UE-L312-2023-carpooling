@@ -9,7 +9,7 @@ class CarsService
     /**
      * Create or update an car.
      */
-    public function setCar(?int $id, string $brand, string $model, string $color, int $door): bool
+    public function setCar(?string $id, string $brand, string $model, string $color, string $door): bool
     {
         $isOk = false;
 
@@ -50,7 +50,7 @@ class CarsService
     /**
      * Delete an car.
      */
-    public function deleteCar(int $id): bool
+    public function deleteCar(string $id): bool
     {
         $isOk = false;
 

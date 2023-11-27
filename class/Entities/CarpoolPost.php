@@ -14,22 +14,22 @@ class CarpoolPost
     private $message;
 
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
 
-    public function getCreatorId(): int
+    public function getCreatorId(): string
     {
         return $this->creatorId;
     }
 
-    public function setCreatorId(int $creatorId): void
+    public function setCreatorId(string $creatorId): void
     {
         $this->creatorId = $creatorId;
     }
