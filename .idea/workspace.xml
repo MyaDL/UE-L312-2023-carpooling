@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="carpool-pos-service: correction data base service file">
-      <change afterPath="$PROJECT_DIR$/carpool_posts_create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/carpool_posts_delete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/carpool_posts_read.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/carpool_posts_update.php" afterDir="false" />
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete">
+      <change afterPath="$PROJECT_DIR$/bookings_create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Controllers/BookingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/BookingsController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="booking-service-database" />
+        <entry key="$PROJECT_DIR$" value="carpool-post-view" />
       </map>
     </option>
     <option name="UPDATE_TYPE" value="REBASE" />
@@ -77,7 +73,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "carpool-post-view",
+    "git-widget-placeholder": "booking-view",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -128,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701091403220</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete">
+      <option name="closed" value="true" />
+      <created>1701092732318</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701092732318</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +166,7 @@
     <MESSAGE value="carpool-post-model: code carpool post entity, carpool post service, sql file post and update database service file" />
     <MESSAGE value="booking-service-database: code booking service file and update data base service file" />
     <MESSAGE value="carpool-pos-service: correction data base service file" />
-    <option name="LAST_COMMIT_MESSAGE" value="carpool-pos-service: correction data base service file" />
+    <MESSAGE value="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete" />
   </component>
 </project>
