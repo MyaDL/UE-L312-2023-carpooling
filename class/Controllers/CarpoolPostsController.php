@@ -14,19 +14,19 @@ class CarpoolPostsController
         $html = '';
 
         //If the form have been submitted
-        if (isset($_POST['creatorId']) &&
-            isset($_POST['startAddress']) &&
-            isset($_POST['arrivalAddress']) &&
-            isset($_POST['startDateTime']) &&
+        if (isset($_POST['creator_id']) &&
+            isset($_POST['start_address']) &&
+            isset($_POST['arrival_address']) &&
+            isset($_POST['start_date_time']) &&
             isset($_POST['message'])) {
             //Create the post
             $carpoolPostsService = new CarpoolPostsService();
             $isOk = $carpoolPostsService->setCarpoolPost(
                 null,
-                $_POST['creatorId'],
-                $_POST['startAddress'],
-                $_POST['arrivalAddress'],
-                $_POST['startDateTime'],
+                $_POST['creator_id'],
+                $_POST['start_address'],
+                $_POST['arrival_address'],
+                $_POST['start_date_time'],
                 $_POST['message']
             );
             if ($isOk) {
@@ -73,19 +73,19 @@ class CarpoolPostsController
 
         //If the form have been submitted
         if (isset($_POST['id']) &&
-            isset($_POST['creatorId']) &&
-            isset($_POST['startAddress']) &&
-            isset($_POST['arrivalAddress']) &&
-            isset($_POST['startDateTime']) &&
+            isset($_POST['creator_id']) &&
+            isset($_POST['start_address']) &&
+            isset($_POST['arrival_address']) &&
+            isset($_POST['start_date_time']) &&
             isset($_POST['message'])) {
             //Update the carpool post
             $carpoolPostsService = new CarpoolPostsService();
             $isOk = $carpoolPostsService->setCarpoolPost(
                 $_POST['id'],
-                $_POST['creatorId'],
-                $_POST['startAddress'],
-                $_POST['arrivalAddress'],
-                $_POST['startDateTime'],
+                $_POST['creator_id'],
+                $_POST['start_address'],
+                $_POST['arrival_address'],
+                $_POST['start_date_time'],
                 $_POST['message']
             );
             if ($isOk) {
