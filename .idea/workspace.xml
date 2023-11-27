@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete">
-      <change afterPath="$PROJECT_DIR$/bookings_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Controllers/BookingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/BookingsController.php" afterDir="false" />
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="carpool-view: code bookings creations files and correction of booking controller">
+      <change afterPath="$PROJECT_DIR$/bookings_delete.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701092732318</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="carpool-view: code bookings creations files and correction of booking controller">
+      <option name="closed" value="true" />
+      <created>1701094332607</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701094332607</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +173,7 @@
     <MESSAGE value="booking-service-database: code booking service file and update data base service file" />
     <MESSAGE value="carpool-pos-service: correction data base service file" />
     <MESSAGE value="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete" />
+    <MESSAGE value="carpool-view: code bookings creations files and correction of booking controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="carpool-view: code bookings creations files and correction of booking controller" />
   </component>
 </project>
