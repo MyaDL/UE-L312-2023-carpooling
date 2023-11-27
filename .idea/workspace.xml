@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-view: code bookings delete file">
-      <change afterPath="$PROJECT_DIR$/bookings_read.php" afterDir="false" />
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-view: code bookings read file">
+      <change afterPath="$PROJECT_DIR$/bookings_update.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701094466842</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="booking-view: code bookings read file">
+      <option name="closed" value="true" />
+      <created>1701094513695</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701094513695</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +191,7 @@
     <MESSAGE value="carpool-pos-service: code CRUD of carpool posts and correction on carpool posts controller users delete" />
     <MESSAGE value="carpool-view: code bookings creations files and correction of booking controller" />
     <MESSAGE value="booking-view: code bookings delete file" />
-    <option name="LAST_COMMIT_MESSAGE" value="booking-view: code bookings delete file" />
+    <MESSAGE value="booking-view: code bookings read file" />
+    <option name="LAST_COMMIT_MESSAGE" value="booking-view: code bookings read file" />
   </component>
 </project>
