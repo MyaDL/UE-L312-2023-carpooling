@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Services\BookingService;
+use App\Services\BookingsService;
 
 class BookingsController
 {
@@ -14,13 +15,13 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['brand']) &&
-            isset($_POST['model']) &&
-            isset($_POST['color']) &&
-            isset($_POST['door'])) {
+        if (isset($_POST['driver_id']) &&
+            isset($_POST['tel']) &&
+            isset($_POST['price']) &&
+            isset($_POST['payment_method'])) {
                 
             // Create the Booking :
-            $BookingService = new BookingService();
+            $BookingService = new BookingsService();
             $isOk = $BookingService->setBooking(
                 null,
                 $_POST['driver_id'],
@@ -46,7 +47,7 @@ class BookingsController
         $html = '';
 
         // Get all bookings :
-        $bookingsService = new BookingService();
+        $bookingsService = new BookingsService();
         $bookings = $bookingsService->getBookings();
 
         // Get html :
@@ -76,7 +77,7 @@ class BookingsController
             isset($_POST['price']) &&
             isset($_POST['payment_method'])) {
             // Update the booking :
-            $bookingsService = new BookingService();
+            $bookingsService = new BookingsService();
             $isOk = $bookingsService->setBooking(
                 $_POST['id'],
                 $_POST['driver_id'],
@@ -104,12 +105,12 @@ class BookingsController
         // If the form have been submitted :
         if (isset($_POST['id'])) {
             // Delete the booking :
-            $bookingsService = new BookingService();
+            $bookingsService = new BookingsService();
             $isOk = $bookingsService->deleteBooking($_POST['id']);
             if ($isOk) {
                 $html = 'La réservation a été supprimée avec succès.';
             } else {
-                $html = 'Erreur lors de la supression de la réservation.';
+                $html = 'Erreur lors de la suppression de la réservation.';
             }
         }
 
