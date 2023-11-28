@@ -8,16 +8,18 @@ class Car
     private $brand;
     private $model;
     private $color;
-    private $door;
+    private $nbrSlots;
 
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function setId(string $id): void
+    public function setId(string $id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     public function getBrand(): string
@@ -25,9 +27,11 @@ class Car
         return $this->brand;
     }
 
-    public function setBrand(string $brand): void
+    public function setBrand(string $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
     }
 
     public function getModel(): string
@@ -35,9 +39,11 @@ class Car
         return $this->model;
     }
 
-    public function setModel(string $model): void
+    public function setModel(string $model): self
     {
         $this->model = $model;
+
+        return $this;
     }
 
     public function getColor(): string
@@ -45,18 +51,22 @@ class Car
         return $this->color;
     }
 
-    public function setColor($color): void
+    public function setColor(string $color): self
     {
         $this->color = $color;
+
+        return $this;
     }
 
-    public function getDoor(): string
+    public function getNbrSlots(): int
     {
-        return $this->door;
+        return $this->nbrSlots;
     }
 
-    public function setDoor(string $door): void
+    public function setNbrSlots(int $nbrSlots): self
     {
-        $this->door = $door;
+        $this->nbrSlots = $nbrSlots;
+
+        return $this;
     }
 }

@@ -17,17 +17,26 @@ class UsersController
         if (isset($_POST['firstname']) &&
             isset($_POST['lastname']) &&
             isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
+            isset($_POST['birthday']) &&
+            isset($_POST['cars'])) {
             // Create the user :
             $usersService = new UsersService();
-            $isOk = $usersService->setUser(
+            $userId = $usersService->setUser(
                 null,
                 $_POST['firstname'],
                 $_POST['lastname'],
                 $_POST['email'],
                 $_POST['birthday']
             );
-            if ($isOk) {
+
+            // Create the user cars relations :
+            $isOk = true;
+            if (!empty($_POST['cars'])) {
+                foreach ($_POST['cars'] as $carId) {
+                    $isOk = $usersService->setUserCar($userId, $carId);
+                }
+            }
+            if ($userId && $isOk) {
                 $html = 'Utilisateur créé avec succès.';
             } else {
                 $html = 'Erreur lors de la création de l\'utilisateur.';
@@ -50,12 +59,19 @@ class UsersController
 
         // Get html :
         foreach ($users as $user) {
+            $carsHtml = '';
+            if (!empty($user->getCars())) {
+                foreach ($user->getCars() as $car) {
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
+                }
+            }
             $html .=
                 '#' . $user->getId() . ' ' .
                 $user->getFirstname() . ' ' .
                 $user->getLastname() . ' ' .
                 $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . '<br />';
+                $user->getBirthday()->format('d-m-Y') . ' ' .
+                $carsHtml . '<br />';
         }
 
         return $html;
@@ -108,7 +124,7 @@ class UsersController
             if ($isOk) {
                 $html = 'Utilisateur supprimé avec succès.';
             } else {
-                $html = 'Erreur lors de la suppression de l\'utilisateur.';
+                $html = 'Erreur lors de la supression de l\'utilisateur.';
             }
         }
 

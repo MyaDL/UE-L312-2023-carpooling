@@ -39,7 +39,7 @@ class CarsService
                 $car->setBrand($carDTO['brand']);
                 $car->setModel($carDTO['model']);
                 $car->setColor($carDTO['color']);
-                $car->setDoor($carDTO['door']);
+                $car->setNbrSlots($carDTO['nbrSlots']);
                 $cars[] = $car;
             }
         }

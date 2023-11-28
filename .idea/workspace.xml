@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-view: code bookings update file">
-      <change afterPath="$PROJECT_DIR$/bdd.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data.sql" afterDir="false" />
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="relation-bdd: update data base to create relation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Entities/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/Car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Entities/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Services/CarsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/CarsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Services/DataBaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/DataBaseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/UsersService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_delete.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +114,7 @@
       <workItem from="1701003740342" duration="3435000" />
       <workItem from="1701100689683" duration="1437000" />
       <workItem from="1701114570852" duration="626000" />
-      <workItem from="1701168531101" duration="5591000" />
+      <workItem from="1701168531101" duration="6055000" />
     </task>
     <task id="LOCAL-00001" summary="carpool-post-model: code carpool post entity, carpool post service, sql file post and update database service file">
       <created>1700949032162</created>
@@ -173,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701094687566</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="relation-bdd: update data base to create relation">
+      <option name="closed" value="true" />
+      <created>1701174158015</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701174158015</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +226,7 @@
     <MESSAGE value="booking-view: code bookings delete file" />
     <MESSAGE value="booking-view: code bookings read file" />
     <MESSAGE value="booking-view: code bookings update file" />
-    <option name="LAST_COMMIT_MESSAGE" value="booking-view: code bookings update file" />
+    <MESSAGE value="relation-bdd: update data base to create relation" />
+    <option name="LAST_COMMIT_MESSAGE" value="relation-bdd: update data base to create relation" />
   </component>
 </project>
