@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-view: code bookings read file">
-      <change afterPath="$PROJECT_DIR$/bookings_update.php" afterDir="false" />
+    <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="booking-view: code bookings update file">
+      <change afterPath="$PROJECT_DIR$/bdd.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +21,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="carpool-post-view" />
+        <entry key="$PROJECT_DIR$" value="relation-bdd" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -53,14 +56,14 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2YdGMoDSWlH5nnzD7J0flVhAEWq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -71,13 +74,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "booking-view",
+    "git-widget-placeholder": "relation-bdd",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -98,6 +106,9 @@
       <workItem from="1700931847348" duration="355000" />
       <workItem from="1700932344410" duration="16787000" />
       <workItem from="1701003740342" duration="3435000" />
+      <workItem from="1701100689683" duration="1437000" />
+      <workItem from="1701114570852" duration="626000" />
+      <workItem from="1701168531101" duration="5591000" />
     </task>
     <task id="LOCAL-00001" summary="carpool-post-model: code carpool post entity, carpool post service, sql file post and update database service file">
       <created>1700949032162</created>
@@ -154,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701094513695</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="booking-view: code bookings update file">
+      <option name="closed" value="true" />
+      <created>1701094687566</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701094687566</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +190,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/carpool-post-controller" />
+                        <option value="origin/relation-bdd" />
                       </list>
                     </value>
                   </entry>
@@ -192,6 +211,7 @@
     <MESSAGE value="carpool-view: code bookings creations files and correction of booking controller" />
     <MESSAGE value="booking-view: code bookings delete file" />
     <MESSAGE value="booking-view: code bookings read file" />
-    <option name="LAST_COMMIT_MESSAGE" value="booking-view: code bookings read file" />
+    <MESSAGE value="booking-view: code bookings update file" />
+    <option name="LAST_COMMIT_MESSAGE" value="booking-view: code bookings update file" />
   </component>
 </project>
