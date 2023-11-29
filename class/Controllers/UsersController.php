@@ -18,7 +18,8 @@ class UsersController
             isset($_POST['lastname']) &&
             isset($_POST['email']) &&
             isset($_POST['birthday']) &&
-            isset($_POST['cars'])) {
+            isset($_POST['cars']) &&
+            isset($_POST['posts'])) {
             // Create the user :
             $usersService = new UsersService();
             $userId = $usersService->setUser(
@@ -34,6 +35,11 @@ class UsersController
             if (!empty($_POST['cars'])) {
                 foreach ($_POST['cars'] as $carId) {
                     $isOk = $usersService->setUserCar($userId, $carId);
+                }
+            }
+            if (!empty($_POST['posts'])) {
+                foreach ($_POST['posts'] as $postId) {
+                    $isOk = $usersService->setUserPost($userId, $postId);
                 }
             }
             if ($userId && $isOk) {
@@ -60,18 +66,29 @@ class UsersController
         // Get html :
         foreach ($users as $user) {
             $carsHtml = '';
+            $postsHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
                     $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
                 }
             }
+            if (!empty($user->getCarpoolPost())) {
+                foreach ($user->getCarpoolPost() as $post) {
+                    $startDateTime = $post->getStartDateTime();
+                    $startDateTimeString = $startDateTime->format('Y-m-d H:i:s');
+                    $postsHtml .= $post->getPrice() . ' ' . $post->getStartAddress() . ' ' . $post->getArrivalAddress() . ' ' . $startDateTimeString . ' ' . $post->getMessage() . ' ';
+                }
+            }
+
             $html .=
                 '#' . $user->getId() . ' ' .
                 $user->getFirstname() . ' ' .
                 $user->getLastname() . ' ' .
                 $user->getEmail() . ' ' .
                 $user->getBirthday()->format('d-m-Y') . ' ' .
-                $carsHtml . '<br />';
+                $carsHtml . '<br />' .
+                '<p>Post(s) de l\'utilisateur: </p>' .
+                '<li>' .$postsHtml . '</li><br />';
         }
 
         return $html;

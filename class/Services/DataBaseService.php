@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'password';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
@@ -363,7 +363,7 @@ class DataBaseService
         $sql = '
             SELECT c.*
             FROM cars as c
-            LEFT JOIN users_cars as uc ON uc.car_id = c.id
+            LEFT JOIN users_cars as uc ON uc.car_id = c.car_id
             WHERE uc.user_id = :userId';
         $query = $this->connection->prepare($sql);
         $query->execute($data);
@@ -373,5 +373,48 @@ class DataBaseService
         }
 
         return $userCars;
+    }
+
+    /**
+     * Create relation between an user and his car.
+     */
+    public function setUserPost(string $userId, string $postId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'userId' => $userId,
+            'postId' => $postId,
+        ];
+        $sql = 'INSERT INTO users_posts (user_id, post_id) VALUES (:userId, :carId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given user id.
+     */
+    public function getUserPosts(string $userId): array
+    {
+        $userPosts = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = '
+            SELECT p.*
+            FROM posts as p
+            LEFT JOIN users_posts as up ON up.post_id = p.post_id
+            WHERE up.user_id = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userPosts = $results;
+        }
+
+        return $userPosts;
     }
 }

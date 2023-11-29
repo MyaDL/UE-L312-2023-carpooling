@@ -56,7 +56,7 @@ class CarsController
                 $car->getBrand() . ' ' .
                 $car->getModel() . ' ' .
                 $car->getColor() . ' ' .
-                $car->getDoor() . '<br />';
+                $car->getNbrSlots() . '<br />';
         }
 
         return $html;

@@ -7,7 +7,7 @@ use DateTime;
 class CarpoolPost
 {
     private $id;
-    private $creatorId;
+    private $price;
     private $startAddress;
     private $arrivalAddress;
     private $startDateTime;
@@ -24,14 +24,14 @@ class CarpoolPost
         $this->id = $id;
     }
 
-    public function getCreatorId(): string
+    public function getPrice(): string
     {
-        return $this->creatorId;
+        return $this->price;
     }
 
-    public function setCreatorId(string $creatorId): void
+    public function setPrice(string $price): void
     {
-        $this->creatorId = $creatorId;
+        $this->price = $price;
     }
 
     public function getStartAddress(): string
