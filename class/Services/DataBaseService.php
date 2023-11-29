@@ -376,7 +376,7 @@ class DataBaseService
     }
 
     /**
-     * Create relation between an user and his car.
+     * Create relation between an user and his post.
      */
     public function setUserPost(string $userId, string $postId): bool
     {
@@ -386,7 +386,7 @@ class DataBaseService
             'userId' => $userId,
             'postId' => $postId,
         ];
-        $sql = 'INSERT INTO users_posts (user_id, post_id) VALUES (:userId, :carId)';
+        $sql = 'INSERT INTO users_posts (user_id, post_id) VALUES (:userId, :postId)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -394,7 +394,7 @@ class DataBaseService
     }
 
     /**
-     * Get cars of given user id.
+     * Get posts of given user id.
      */
     public function getUserPosts(string $userId): array
     {
@@ -416,5 +416,48 @@ class DataBaseService
         }
 
         return $userPosts;
+    }
+
+    /**
+     * Create relation between an user and his booking.
+     */
+    public function setUserBooking(string $userId, string $bookingId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'userId' => $userId,
+            'bookingId' => $bookingId,
+        ];
+        $sql = 'INSERT INTO users_posts (user_id, bookingId) VALUES (:userId, :bookingId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get bookings of given user id.
+     */
+    public function getUserBooking(string $userId): array
+    {
+        $userBookings = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = '
+            SELECT b.*
+            FROM bookings as b
+            LEFT JOIN users_bookings as ub ON ub.booking_id = b.booking_id
+            WHERE ub.user_id = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userBookings = $results;
+        }
+
+        return $userBookings;
     }
 }

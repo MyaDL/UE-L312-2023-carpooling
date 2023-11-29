@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Entities\Booking;
 use App\Entities\Car;
 use App\Entities\CarpoolPost;
 use App\Entities\User;
@@ -56,7 +57,11 @@ class UsersService
 
                 // Get posts of this user :
                 $posts = $this->getUserPosts($userDTO['user_id']);
-                $user->setCarpoolPost($posts);
+                $user->setCarpoolPosts($posts);
+
+                // Get bookings of this user :
+                $bookings = $this->getUserBookings($userDTO['user_id']);
+                $user->setBookings($bookings);
 
                 $users[] = $user;
             }
@@ -131,7 +136,7 @@ class UsersService
     }
 
     /**
-     * Get cars of given user id.
+     * Get posts of given user id.
      */
     public function getUserPosts(string $userId): array
     {
@@ -158,5 +163,28 @@ class UsersService
         }
 
         return $userPosts;
+    }
+
+    /**
+     * Get bookings of given user id.
+     */
+    public function getUserBookings(string $userId): array
+    {
+        $userBookings = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and bookings :
+        $usersBookingsDTO = $dataBaseService->getUserBooking($userId);
+        if (!empty($usersBookingsDTO)) {
+            foreach ($usersBookingsDTO as $userBookingDTO) {
+                $booking = new Booking();
+                $booking->setId($userBookingDTO['booking_id']);
+                $booking->setPaymentMethod($userBookingDTO['payment_method']);
+                $userBookings[] = $booking;
+            }
+        }
+
+        return $userBookings;
     }
 }

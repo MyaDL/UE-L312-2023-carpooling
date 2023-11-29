@@ -13,6 +13,7 @@ class User
     private $birthday;
     private $cars;
     private $posts;
+    private $bookings;
 
     public function getId(): string
     {
@@ -76,14 +77,26 @@ class User
         return $this;
     }
 
-    public function getCarpoolPost(): ?array
+    public function getCarpoolPosts(): ?array
     {
         return $this->posts;
     }
 
-    public function setCarpoolPost(array $posts)
+    public function setCarpoolPosts(array $posts)
     {
         $this->posts = $posts;
+
+        return $this;
+    }
+
+    public function getBookings(): ?array
+    {
+        return $this->bookings;
+    }
+
+    public function setBookings(array $bookings)
+    {
+        $this->bookings = $bookings;
 
         return $this;
     }
