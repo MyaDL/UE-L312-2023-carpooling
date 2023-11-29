@@ -10,16 +10,16 @@ class CarpoolPostsService
     /**
      * Create or update a carpool post
      */
-    public function setCarpoolPost(?string $id, string $creatorId, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): bool
+    public function setCarpoolPost(?string $id, string $price, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         $startDateTime = new DateTime($startDateTime);
         if (empty($id)) {
-            $isOk = $dataBaseService->createCarpoolPost($creatorId, $startAddress, $arrivalAddress, $startDateTime, $message);
+            $isOk = $dataBaseService->createCarpoolPost($price, $startAddress, $arrivalAddress, $startDateTime, $message);
         } else {
-            $isOk = $dataBaseService->updateCarpoolPost($id, $creatorId, $startAddress, $arrivalAddress, $startDateTime, $message);
+            $isOk = $dataBaseService->updateCarpoolPost($id, $price, $startAddress, $arrivalAddress, $startDateTime, $message);
         }
 
         return $isOk;
@@ -37,8 +37,8 @@ class CarpoolPostsService
         if (!empty($carpoolPostsDTO)) {
             foreach ($carpoolPostsDTO as $carpoolPostDTO) {
                 $carpoolPost = new CarpoolPost();
-                $carpoolPost->setId($carpoolPostDTO['id']);
-                $carpoolPost->setCreatorId($carpoolPostDTO['creator_id']);
+                $carpoolPost->setId($carpoolPostDTO['post_id']);
+                $carpoolPost->setPrice($carpoolPostDTO['price']);
                 $carpoolPost->setStartAddress($carpoolPostDTO['start_address']);
                 $carpoolPost->setArrivalAddress($carpoolPostDTO['arrival_address']);
                 $carpoolPost->setMessage($carpoolPostDTO['message']);

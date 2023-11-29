@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\Car;
+use App\Entities\CarpoolPost;
 use App\Entities\User;
 use DateTime;
 
@@ -40,7 +41,7 @@ class UsersService
             foreach ($usersDTO as $userDTO) {
                 // Get user :
                 $user = new User();
-                $user->setId($userDTO['id']);
+                $user->setId($userDTO['user_id']);
                 $user->setFirstname($userDTO['firstname']);
                 $user->setLastname($userDTO['lastname']);
                 $user->setEmail($userDTO['email']);
@@ -50,8 +51,12 @@ class UsersService
                 }
 
                 // Get cars of this user :
-                $cars = $this->getUserCars($userDTO['id']);
+                $cars = $this->getUserCars($userDTO['user_id']);
                 $user->setCars($cars);
+
+                // Get posts of this user :
+                $posts = $this->getUserPosts($userDTO['user_id']);
+                $user->setCarpoolPost($posts);
 
                 $users[] = $user;
             }
@@ -100,7 +105,7 @@ class UsersService
         if (!empty($usersCarsDTO)) {
             foreach ($usersCarsDTO as $userCarDTO) {
                 $car = new Car();
-                $car->setId($userCarDTO['id']);
+                $car->setId($userCarDTO['car_id']);
                 $car->setBrand($userCarDTO['brand']);
                 $car->setModel($userCarDTO['model']);
                 $car->setColor($userCarDTO['color']);
@@ -110,5 +115,48 @@ class UsersService
         }
 
         return $userCars;
+    }
+
+     /**
+     * Create relation bewteen an user and his post.
+     */
+    public function setUserPost(string $userId, string $postId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setUserPost($userId, $postId);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given user id.
+     */
+    public function getUserPosts(string $userId): array
+    {
+        $userPosts = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and posts :
+        $usersPostsDTO = $dataBaseService->getUserPosts($userId);
+        if (!empty($usersPostsDTO)) {
+            foreach ($usersPostsDTO as $userPostDTO) {
+                $post = new CarpoolPost();
+                $post->setId($userPostDTO['post_id']);
+                $post->setPrice($userPostDTO['price']);
+                $post->setStartAddress($userPostDTO['start_address']);
+                $post->setArrivalAddress($userPostDTO['arrival_address']);
+                $date = new DateTime($userPostDTO['start_date_time']);
+                if ($date !== false) {
+                    $post->setStartDateTime($date);
+                }
+                $post->setMessage($userPostDTO['message']);
+                $userPosts[] = $post;
+            }
+        }
+
+        return $userPosts;
     }
 }
