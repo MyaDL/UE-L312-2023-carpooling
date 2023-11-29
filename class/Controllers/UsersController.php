@@ -67,16 +67,23 @@ class UsersController
         foreach ($users as $user) {
             $carsHtml = '';
             $postsHtml = '';
+            $bookingHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
                     $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
                 }
             }
-            if (!empty($user->getCarpoolPost())) {
-                foreach ($user->getCarpoolPost() as $post) {
+            if (!empty($user->getCarpoolPosts())) {
+                foreach ($user->getCarpoolPosts() as $post) {
                     $startDateTime = $post->getStartDateTime();
                     $startDateTimeString = $startDateTime->format('Y-m-d H:i:s');
-                    $postsHtml .= $post->getPrice() . ' ' . $post->getStartAddress() . ' ' . $post->getArrivalAddress() . ' ' . $startDateTimeString . ' ' . $post->getMessage() . ' ';
+                    $postsHtml .= '<b>Post n°</b>' .$post->getId() . ' <b>Prix: </b>' . $post->getPrice() . '€ <b>adresse de départ: </b>' . $post->getStartAddress() . ' <b>Adresse d\'arrivé: </b>' . $post->getArrivalAddress() . ' <b>Heure d\'arrivé: </b>' . $startDateTimeString . ' <b>Message: </b>' . $post->getMessage() . ' ';
+                }
+            }
+
+            if (!empty($user->getBookings())) {
+                foreach ($user->getBookings() as $booking) {
+                    $bookingHtml .= '<li>#' .  $booking->getId() . ' ' . $booking->getPaymentMethod() . '</li><br>';
                 }
             }
 
@@ -87,8 +94,10 @@ class UsersController
                 $user->getEmail() . ' ' .
                 $user->getBirthday()->format('d-m-Y') . ' ' .
                 $carsHtml . '<br />' .
-                '<p>Post(s) de l\'utilisateur: </p>' .
-                '<li>' .$postsHtml . '</li><br />';
+                '<p><b>Post(s) de l\'utilisateur: </b></p>' .
+                '<li>' .$postsHtml . '</li><br />' .
+                '<p><b>Réservation(s) de l\'utilisateur: </b></p>' .
+                ' ' .$bookingHtml . ' ';
         }
 
         return $html;
