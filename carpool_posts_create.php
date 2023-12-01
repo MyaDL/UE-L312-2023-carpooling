@@ -1,11 +1,15 @@
 <?php
 
 use App\Controllers\CarpoolPostsController;
+use App\Services\CarsService;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $controller = new CarpoolPostsController();
 echo $controller->createCarpoolPost();
+
+$carsService = new CarsService();
+$cars = $carsService->getCars();
 ?>
 
 <p>Création d'une annonce</p>
@@ -24,6 +28,13 @@ echo $controller->createCarpoolPost();
     <br />
     <label for="message">Message :</label>
     <input type="text" name="message">
+    <br />
+    <label for="cars">Voiture(s) :</label>
+    <?php foreach ($cars as $car): ?>
+        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
+        <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+        <br />
+    <?php endforeach; ?>
     <br />
     <input type="submit" value="Créer une annonce">
 </form>

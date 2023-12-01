@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\CarpoolPost;
+use App\Entities\Car;
 use DateTime;
 
 class CarpoolPostsService
@@ -46,6 +47,11 @@ class CarpoolPostsService
                 if ($date !== false) {
                     $carpoolPost->setStartDateTime($date);
                 }
+
+                // Get cars of this post :
+                $cars = $this->getPostCars($carpoolPostDTO['post_id']);
+                $carpoolPost->setCars($cars);
+
                 $posts[] = $carpoolPost;
             }
         }
@@ -62,6 +68,45 @@ class CarpoolPostsService
 
         $dataBaseService = new DataBaseService();
         $isOk = $dataBaseService->deleteCarpoolPost($id);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given post id.
+     */
+    public function getPostCars(string $postId): array
+    {
+        $postCars = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation posts and cars :
+        $postsCarsDTO = $dataBaseService->getPostCars($postId);
+        if (!empty($postsCarsDTO)) {
+            foreach ($postsCarsDTO as $postCarDTO) {
+                $car = new Car();
+                $car->setId($postCarDTO['car_id']);
+                $car->setBrand($postCarDTO['brand']);
+                $car->setModel($postCarDTO['model']);
+                $car->setColor($postCarDTO['color']);
+                $car->setNbrSlots($postCarDTO['nbrSlots']);
+                $postCars[] = $car;
+            }
+        }
+
+        return $postCars;
+    }
+
+    /**
+     * Create relation between a post and his car
+     */
+    public function setPostCar(string $postId, string $carId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setPostCar($postId, $carId);
 
         return $isOk;
     }
