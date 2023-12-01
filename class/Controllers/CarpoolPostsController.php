@@ -18,10 +18,11 @@ class CarpoolPostsController
             isset($_POST['start_address']) &&
             isset($_POST['arrival_address']) &&
             isset($_POST['start_date_time']) &&
-            isset($_POST['message'])) {
+            isset($_POST['message']) &&
+            isset($_POST['cars'])) {
             //Create the post
             $carpoolPostsService = new CarpoolPostsService();
-            $isOk = $carpoolPostsService->setCarpoolPost(
+            $postId = $carpoolPostsService->setCarpoolPost(
                 null,
                 $_POST['creator_id'],
                 $_POST['start_address'],
@@ -29,6 +30,14 @@ class CarpoolPostsController
                 $_POST['start_date_time'],
                 $_POST['message']
             );
+
+            // Create the post cars relations :
+            $isOk = true;
+            if (!empty($_POST['cars'])) {
+                foreach ($_POST['cars'] as $carId) {
+                    $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+                }
+            }
             if ($isOk) {
                 $html = 'Annonce créée avec succès';
             } else {
@@ -52,13 +61,20 @@ class CarpoolPostsController
 
         //Get html
         foreach ($carpoolPosts as $carpoolPost) {
+            $carsHtml = '';
+            if (!empty($carpoolPost->getCars())) {
+                foreach ($carpoolPost->getCars() as $car) {
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
+                }
+            }
             $html .=
                 '#' . $carpoolPost->getId() . ' ' .
                 $carpoolPost->getCreatorId() . ' ' .
                 $carpoolPost->getStartAddress() . ' ' .
                 $carpoolPost->getArrivalAddress() . ' ' .
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .
-                $carpoolPost->getMessage() . '<br/>';
+                $carpoolPost->getMessage() . ' ' .
+                $carsHtml . '<br />';
         }
 
         return $html;

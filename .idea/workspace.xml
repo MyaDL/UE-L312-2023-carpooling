@@ -6,14 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="217619ed-1372-460d-a129-6a834449a1df" name="Changes" comment="relation-bdd: update data base to create relation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Entities/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Entities/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Services/CarsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/CarsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carpool_posts_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/carpool_posts_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controllers/CarpoolPostsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Entities/CarpoolPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/CarpoolPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Services/CarpoolPostsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/CarpoolPostsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Services/DataBaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/DataBaseService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/UsersService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/users_delete.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="relation-bdd" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +78,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "relation-bdd",
+    "git-widget-placeholder": "relation-post-car",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

@@ -123,7 +123,7 @@ class UsersService
     }
 
      /**
-     * Create relation bewteen an user and his post.
+     * Create relation between an user and his post.
      */
     public function setUserPost(string $userId, string $postId): bool
     {
