@@ -21,7 +21,7 @@ class CarpoolPostsController
             isset($_POST['message'])) {
             //Create the post
             $carpoolPostsService = new CarpoolPostsService();
-            $isOk = $carpoolPostsService->setCarpoolPost(
+            $postId = $carpoolPostsService->setCarpoolPost(
                 null,
                 $_POST['creator_id'],
                 $_POST['start_address'],
@@ -29,6 +29,14 @@ class CarpoolPostsController
                 $_POST['start_date_time'],
                 $_POST['message']
             );
+
+            // Create the post bookings relations :
+            $isOk = true;
+            if (!empty($_POST['bookings'])) {
+                foreach ($_POST['bookings'] as $bookingId) {
+                    $isOk = $carpoolPostsService->setPostBooking($postId, $bookingId);
+                }
+            }
             if ($isOk) {
                 $html = 'Annonce créée avec succès';
             } else {
@@ -52,13 +60,20 @@ class CarpoolPostsController
 
         //Get html
         foreach ($carpoolPosts as $carpoolPost) {
+            $bookingsHtml = '';
+            if (!empty($carpoolPost->getBookings())) {
+                foreach ($carpoolPost->getBookings() as $booking) {
+                    $bookingHtml .= '<li>#' .  $booking->getId() . ' ' . $booking->getPaymentMethod() . '</li><br>';
+                }
+            }
             $html .=
                 '#' . $carpoolPost->getId() . ' ' .
                 $carpoolPost->getCreatorId() . ' ' .
                 $carpoolPost->getStartAddress() . ' ' .
                 $carpoolPost->getArrivalAddress() . ' ' .
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .
-                $carpoolPost->getMessage() . '<br/>';
+                $carpoolPost->getMessage() . ' ' .
+                ' ' .$bookingHtml . '<br/> ';
         }
 
         return $html;

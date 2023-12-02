@@ -1,11 +1,15 @@
 <?php
 
 use App\Controllers\CarpoolPostsController;
+use App\Services\BookingsService;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $controller = new CarpoolPostsController();
 echo $controller->createCarpoolPost();
+
+$bookingsService = new BookingsService();
+$bookings = $bookingsService->getBookings();
 ?>
 
 <p>Création d'une annonce</p>
@@ -24,6 +28,13 @@ echo $controller->createCarpoolPost();
     <br />
     <label for="message">Message :</label>
     <input type="text" name="message">
+    <br />
+    <label for="cars">Réservation(s) :</label>
+    <?php foreach ($bookings as $booking): ?>
+        <?php $bookingId = $booking->getId() . ' ' . $paymentMethod = $booking->getPaymentMethod(); ?>
+        <input type="checkbox" name="bookings[]" value="<?php echo $booking->getId(); ?>"><?php echo $bookingId . ' ' . $paymentMethod; ?>
+        <br />
+    <?php endforeach; ?>
     <br />
     <input type="submit" value="Créer une annonce">
 </form>

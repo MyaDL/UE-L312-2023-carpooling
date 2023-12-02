@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\CarpoolPost;
+use App\Entities\Booking;
 use DateTime;
 
 class CarpoolPostsService
@@ -46,6 +47,11 @@ class CarpoolPostsService
                 if ($date !== false) {
                     $carpoolPost->setStartDateTime($date);
                 }
+
+                // Get cars of this post :
+                $bookings = $this->getPostBookings($carpoolPostDTO['post_id']);
+                $carpoolPost->setBookings($bookings);
+
                 $posts[] = $carpoolPost;
             }
         }
@@ -62,6 +68,44 @@ class CarpoolPostsService
 
         $dataBaseService = new DataBaseService();
         $isOk = $dataBaseService->deleteCarpoolPost($id);
+
+        return $isOk;
+    }
+
+    /**
+     * Get bookings of given post id.
+     */
+    public function getPostBookings(string $postId): array
+    {
+        $postBookings = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation posts and cars :
+        $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
+        if (!empty($postsBookingsDTO)) {
+            foreach ($postsBookingsDTO as $postBookingDTO) {
+                $booking = new Booking();
+                $booking->setId($postBookingDTO['booking_id']);
+                $booking->setPaymentMethod($postBookingDTO['payment_method']);
+                $postBookings[] = $booking;
+            }
+        }
+
+        return $postBookings;
+    }
+
+
+
+    /**
+     * Create relation between a post and his booking.
+     */
+    public function setPostBooking(string $userId, string $bookingId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setPostBooking($userId, $bookingId);
 
         return $isOk;
     }
