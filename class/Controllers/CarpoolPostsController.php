@@ -79,7 +79,7 @@ class CarpoolPostsController
             }
             $html .=
                 '#' . $carpoolPost->getId() . ' ' .
-                $carpoolPost->getCreatorId() . ' ' .
+                $carpoolPost->getPrice() . ' ' .
                 $carpoolPost->getStartAddress() . ' ' .
                 $carpoolPost->getArrivalAddress() . ' ' .
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .

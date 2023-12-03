@@ -260,17 +260,14 @@ class DataBaseService
     /**
      * Create booking
      */
-    public function createBooking(string $driverId, string $tel, string $price, string $paymentMethod): bool
+    public function createBooking(string $paymentMethod): bool
     {
         $isOk = false;
 
         $data = [
-            'driver_id' => $driverId,
-            'tel' => $tel,
-            'price' => $price,
-            'payment_method' => $paymentMethod,
+            'payment_method' => $paymentMethod
         ];
-        $sql = 'INSERT INTO bookings (driver_id, tel, price, payment_method) VALUES (:driver_id, :tel, :price, :payment_method)';
+        $sql = 'INSERT INTO bookings (payment_method) VALUES (:payment_method)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -297,18 +294,15 @@ class DataBaseService
     /**
      * Update a booking.
      */
-    public function updateBooking(int $id, int $driverId, string $tel, string $price, string $paymentMethod): bool
+    public function updateBooking(int $id, string $paymentMethod): bool
     {
         $isOk = false;
 
         $data = [
             'id' => $id,
-            'driver_id' => $driverId,
-            'tel' => $tel,
-            'price' => $price,
-            'payment_method' => $paymentMethod,
+            'payment_method' => $paymentMethod
         ];
-        $sql = 'UPDATE bookings SET driver_id = :driver_id, tel = :tel, price = :price, payment_method = :payment_method WHERE id = :id;';
+        $sql = 'UPDATE bookings SET payment_method = :payment_method WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
