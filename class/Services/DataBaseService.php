@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = '';
+    const MYSQL_PASSWORD = 'root';
 
     private $connection;
 
@@ -480,12 +480,30 @@ class DataBaseService
     }
 
     /**
+     * Create relation between a post and his booking.
+     */
+    public function setPostBooking(string $postId, string $bookingId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'postId' => $postId,
+            'bookingId' => $bookingId,
+        ];
+       
+        $sql = 'INSERT INTO posts_bookings (post_id, booking_id) VALUES (:postId, :bookingId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
      * Get cars of given user id.
      */
     public function getPostCars(string $postId): array
     {
         $postCars = [];
-
         $data = [
             'postId' => $postId,
         ];
@@ -494,13 +512,43 @@ class DataBaseService
             FROM cars as c
             LEFT JOIN posts_cars as pc ON pc.car_id = c.car_id
             WHERE pc.post_id = :postId';
+      
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
+      
         if (!empty($results)) {
             $postCars = $results;
         }
 
         return $postCars;
+      
+    }
+
+     /**
+     * Get bookings of given user id.
+     */
+    public function getPostBookings(string $postId): array
+    {
+        $postBooking = [];
+
+        $data = [
+            'postId' => $postId,
+        ];
+        $sql = '
+            SELECT b.*
+            FROM bookings as b
+            LEFT JOIN posts_bookings as pb ON pb.booking_id = c.booking_id
+            WHERE pb.post_id = :postId';
+
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $postBooking = $results;
+        }
+
+        return $postBooking;
+
     }
 }

@@ -36,6 +36,12 @@ class CarpoolPostsController
             if (!empty($_POST['cars'])) {
                 foreach ($_POST['cars'] as $carId) {
                     $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+
+            // Create the post bookings relations :
+            $isOk = true;
+            if (!empty($_POST['bookings'])) {
+                foreach ($_POST['bookings'] as $bookingId) {
+                    $isOk = $carpoolPostsService->setPostBooking($postId, $bookingId);
                 }
             }
             if ($isOk) {
@@ -65,6 +71,10 @@ class CarpoolPostsController
             if (!empty($carpoolPost->getCars())) {
                 foreach ($carpoolPost->getCars() as $car) {
                     $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
+            $bookingsHtml = '';
+            if (!empty($carpoolPost->getBookings())) {
+                foreach ($carpoolPost->getBookings() as $booking) {
+                    $bookingHtml .= '<li>#' .  $booking->getId() . ' ' . $booking->getPaymentMethod() . '</li><br>';
                 }
             }
             $html .=
@@ -74,7 +84,8 @@ class CarpoolPostsController
                 $carpoolPost->getArrivalAddress() . ' ' .
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .
                 $carpoolPost->getMessage() . ' ' .
-                $carsHtml . '<br />';
+                $carsHtml . ' ' .
+                $bookingHtml . '<br/> ';
         }
 
         return $html;

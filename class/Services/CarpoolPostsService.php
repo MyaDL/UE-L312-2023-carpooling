@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Entities\CarpoolPost;
 use App\Entities\Car;
+use App\Entities\Booking;
+
 use DateTime;
 
 class CarpoolPostsService
@@ -52,6 +54,10 @@ class CarpoolPostsService
                 $cars = $this->getPostCars($carpoolPostDTO['post_id']);
                 $carpoolPost->setCars($cars);
 
+                $bookings = $this->getPostBookings($carpoolPostDTO['post_id']);
+                $carpoolPost->setBookings($bookings);
+
+
                 $posts[] = $carpoolPost;
             }
         }
@@ -78,10 +84,10 @@ class CarpoolPostsService
     public function getPostCars(string $postId): array
     {
         $postCars = [];
-
         $dataBaseService = new DataBaseService();
 
         // Get relation posts and cars :
+
         $postsCarsDTO = $dataBaseService->getPostCars($postId);
         if (!empty($postsCarsDTO)) {
             foreach ($postsCarsDTO as $postCarDTO) {
@@ -99,6 +105,29 @@ class CarpoolPostsService
     }
 
     /**
+     * Get bookings of given post id.
+     */
+    public function getPostBookings(string $postId): array
+    {
+       $postBookings = [];
+      
+       // Get relation posts and bookings :    
+      
+       $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
+        if (!empty($postsBookingsDTO)) {
+            foreach ($postsBookingsDTO as $postBookingDTO) {
+                $booking = new Booking();
+                $booking->setId($postBookingDTO['booking_id']);
+                $booking->setPaymentMethod($postBookingDTO['payment_method']);
+                $postBookings[] = $booking;
+            }
+        }
+
+        return $postBookings;
+    }
+        
+
+    /**
      * Create relation between a post and his car
      */
     public function setPostCar(string $postId, string $carId): bool
@@ -107,6 +136,20 @@ class CarpoolPostsService
 
         $dataBaseService = new DataBaseService();
         $isOk = $dataBaseService->setPostCar($postId, $carId);
+
+        return $isOk;
+    }
+   
+
+    /**
+     * Create relation between a post and his booking.
+     */
+    public function setPostBooking(string $userId, string $bookingId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setPostBooking($userId, $bookingId);
 
         return $isOk;
     }

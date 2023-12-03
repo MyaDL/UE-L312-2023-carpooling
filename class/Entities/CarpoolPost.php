@@ -13,6 +13,7 @@ class CarpoolPost
     private $startDateTime;
     private $message;
     private $cars;
+    private $bookings;
 
 
     public function getId(): string
@@ -83,6 +84,15 @@ class CarpoolPost
     public function setCars(string $cars)
     {
         $this->cars = $cars;
+
+    public function getBookings(): ?array
+    {
+        return $this->bookings;
+    }
+
+    public function setBookings(string $bookings)
+    {
+        $this->bookings = $bookings;
 
         return $this;
     }
