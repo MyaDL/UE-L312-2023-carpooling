@@ -144,12 +144,21 @@ class CarpoolPostsService
     /**
      * Create relation between a post and his booking.
      */
-    public function setPostBooking(string $userId, string $bookingId): bool
+    public function setPostBooking(string $postId, string $bookingId): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
-        $isOk = $dataBaseService->setPostBooking($userId, $bookingId);
+        $isOk = $dataBaseService->setPostBooking($postId, $bookingId);
+
+        return $isOk;
+    }
+    public function setPostUser(string $postId, string $userId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setPostUser($postId, $userId);
 
         return $isOk;
     }

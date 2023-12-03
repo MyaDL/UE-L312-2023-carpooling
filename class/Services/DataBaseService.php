@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'password';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
@@ -588,6 +588,24 @@ class DataBaseService
         }
 
         return $postBooking;
+    }
 
+        /**
+     * Create relation between a post and his booking.
+     */
+    public function setPostUser(string $postId, string $userId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'postId' => $postId,
+            'userId' => $userId,
+        ];
+
+        $sql = 'INSERT INTO users_posts (post_id, user_id) VALUES (:postId, :userId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
     }
 }

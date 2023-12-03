@@ -39,11 +39,6 @@ class UsersController
                         $isOk = $usersService->setUserCar($userId, $carId);
                     }
                 }
-                if (!empty($_POST['posts'])) {
-                    foreach ($_POST['posts'] as $postId) {
-                        $isOk = $usersService->setUserPost($userId, $postId);
-                    }
-                }
 
                 $html = 'Utilisateur créé avec succès.';
 

@@ -48,6 +48,11 @@ class CarpoolPostsController
                     }
                 }
 
+                // Create the post user relations :
+                if (!empty($_POST['users'])) {
+                    $isOk = $carpoolPostsService->setPostUser($postId, $_POST['users']);
+                }
+
                 $html = 'Annonce créée avec succès';
             }else{
                 $html = 'Erreur lors de la création de l\'annonce';
@@ -131,6 +136,11 @@ class CarpoolPostsController
                     foreach ($_POST['cars'] as $carId) {
                         $isOk = $carpoolPostsService->setPostCar($postId, $carId);
                     }
+                }
+
+                // Create the post users relations :
+                if (!empty($_POST['users'])) {
+                    $isOk = $carpoolPostsService->setPostUser($postId, $_POST['users']);
                 }
 
                 $html = 'Annonce modifiée avec succès';
