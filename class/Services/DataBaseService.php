@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'password';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
