@@ -35,7 +35,7 @@ class DataBaseService
      */
     public function createUser(string $firstname, string $lastname, string $email, DateTime $birthday): ?int
     {
-    
+
         $isOk = null;
 
         $data = [
@@ -48,10 +48,10 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        if($isOk){
-            $userId = (int)$this->connection->lastInsertId();
+        if ($isOk) {
+            $userId = (int) $this->connection->lastInsertId();
         }
-   
+
         return $userId;
     }
 
@@ -110,7 +110,7 @@ class DataBaseService
         return $isOk;
     }
 
-     /**
+    /**
      * Create an car.
      */
     public function createCar(string $brand, string $model, string $color, string $nbrSlots): bool
@@ -203,10 +203,10 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        if($isOk){
-            $postId = (int)$this->connection->lastInsertId();
+        if ($isOk) {
+            $postId = (int) $this->connection->lastInsertId();
         }
-   
+
         return $postId;
     }
 
@@ -280,8 +280,8 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        if($isOk){
-            $bookingId = (int)$this->connection->lastInsertId();
+        if ($isOk) {
+            $bookingId = (int) $this->connection->lastInsertId();
         }
 
         return $bookingId;
@@ -527,7 +527,7 @@ class DataBaseService
             'postId' => $postId,
             'bookingId' => $bookingId,
         ];
-       
+
         $sql = 'INSERT INTO posts_bookings (post_id, booking_id) VALUES (:postId, :bookingId)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
@@ -549,20 +549,20 @@ class DataBaseService
             FROM cars as c
             LEFT JOIN posts_cars as pc ON pc.car_id = c.car_id
             WHERE pc.post_id = :postId';
-      
+
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-      
+
         if (!empty($results)) {
             $postCars = $results;
         }
 
         return $postCars;
-      
+
     }
 
-     /**
+    /**
      * Get bookings of given user id.
      */
     public function getPostBookings(string $postId): array

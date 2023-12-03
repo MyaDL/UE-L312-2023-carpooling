@@ -109,11 +109,11 @@ class CarpoolPostsService
      */
     public function getPostBookings(string $postId): array
     {
-       $postBookings = [];
-      
-       // Get relation posts and bookings :    
-       $dataBaseService = new DataBaseService();
-       $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
+        $postBookings = [];
+
+        // Get relation posts and bookings :    
+        $dataBaseService = new DataBaseService();
+        $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
         if (!empty($postsBookingsDTO)) {
             foreach ($postsBookingsDTO as $postBookingDTO) {
                 $booking = new Booking();
@@ -125,7 +125,7 @@ class CarpoolPostsService
 
         return $postBookings;
     }
-        
+
 
     /**
      * Create relation between a post and his car
@@ -139,7 +139,7 @@ class CarpoolPostsService
 
         return $isOk;
     }
-   
+
 
     /**
      * Create relation between a post and his booking.

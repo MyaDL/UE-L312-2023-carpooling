@@ -33,19 +33,19 @@ $posts = $postsService->getCarpoolPosts();
     <br />
     <label for="cars">Voiture(s) :</label>
     <?php foreach ($cars as $car): ?>
-        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
-        <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
-        <br />
+            <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
+            <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+            <br />
     <?php endforeach; ?>
     <br />
     <label for="posts">Annonces(s) :</label><br>
     <?php foreach ($posts as $post): ?>
-        <?php 
+            <?php
             $startDateTime = $post->getStartDateTime();
             $startDateTimeAsString = $startDateTime->format('Y-m-d H:i:s');
             $postName = $post->getStartAddress() . ' ' . $post->getArrivalAddress() . ' ' . $startDateTimeAsString . ' ' . $post->getPrice(); ?>
-        <input type="checkbox" name="posts[]" value="<?php echo $post->getId(); ?>"><?php echo $postName; ?>
-        <br />
+            <input type="checkbox" name="posts[]" value="<?php echo $post->getId(); ?>"><?php echo $postName; ?>
+            <br />
     <?php endforeach; ?>
     <br />
     <input type="submit" value="Créer un utilisateur">

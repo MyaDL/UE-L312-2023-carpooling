@@ -19,14 +19,14 @@ class UsersService
 
         $dataBaseService = new DataBaseService();
         $birthdayDateTime = new DateTime($birthday);
-     
+
         if (empty($id)) {
             $userId = $dataBaseService->createUser($firstname, $lastname, $email, $birthdayDateTime);
         } else {
             $dataBaseService->updateUser($id, $firstname, $lastname, $email, $birthdayDateTime);
             $userId = (int) $id;
         }
-      
+
         return $userId;
     }
 
@@ -123,7 +123,7 @@ class UsersService
         return $userCars;
     }
 
-     /**
+    /**
      * Create relation bewteen an user and his post.
      */
     public function setUserPost(string $userId, string $postId): bool
