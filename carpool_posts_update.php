@@ -3,6 +3,7 @@
 use App\Controllers\CarpoolPostsController;
 use App\Services\CarsService;
 use App\Services\BookingsService;
+use App\Services\UsersService;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -16,10 +17,20 @@ $cars = $carsService->getCars();
 $bookingsService = new BookingsService();
 $bookings = $bookingsService->getBookings();
 
+$usersService = new UsersService();
+$users = $usersService->getUsers();
 ?>
 
 <p>Modification d'une annonce</p>
 <form method="post" action="carpool_posts_update.php" name="carpoolUpdateCreateForm">
+    <label for="users">Utilisateur :</label>
+    <select name="users">
+        <option value="">--Choisir un utilisateur--</option>
+        <?php foreach ($users as $user): ?>
+            <?php $userName = $user->getFirstName() . ' ' . $user->getLastName(); ?>
+            <option value="<?php echo $user->getId(); ?>"><?php echo $userName; ?>
+        <?php endforeach; ?>
+    </select><br>
     <label for="post_id">Id de l'annonce :</label>
     <input type="text" name="post_id">
     <br /><br>
