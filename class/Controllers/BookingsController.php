@@ -91,6 +91,7 @@ class BookingsController
             );
 
             $isOk = true;
+   
             if ($bookingId && $isOk) {
 
                 if (!empty($_POST['users'])) {
