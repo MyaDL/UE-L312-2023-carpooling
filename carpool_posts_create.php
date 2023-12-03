@@ -37,8 +37,8 @@ $bookings = $bookingsService->getBookings();
     <br />
     <label for="cars">Voiture(s) :</label>
     <?php foreach ($cars as $car): ?>
-        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
-        <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+            <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
+            <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
         <?php endforeach; ?>
         <br>
     <br />

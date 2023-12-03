@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Services\BookingsService;
 use App\Services\UsersService;
 
@@ -17,20 +18,20 @@ class BookingsController
         if (
             isset($_POST['payment_method']) && $_POST['payment_method'] != "" &&
             isset($_POST['users']) && $_POST['users'] != ""
-            ) {
-                
+        ) {
+
             // Create the Booking :
             $BookingService = new BookingsService();
             $bookingId = $BookingService->setBooking(
                 null,
                 $_POST['payment_method']
             );
-            
+
             $isOk = true;
             if ($bookingId && $isOk) {
 
                 if (!empty($_POST['users'])) {
-         
+
                     foreach ($_POST['users'] as $userId) {
                         $isOk = $BookingService->setBookingUser($bookingId, $userId);
                     }
@@ -43,8 +44,8 @@ class BookingsController
                 }
 
                 $html = 'La réservation a été créé avec succès.';
-                
-            }else{
+
+            } else {
                 $html = 'Erreur lors de la réservation.';
             }
         }
@@ -62,7 +63,7 @@ class BookingsController
         // Get all bookings :
         $bookingsService = new BookingsService();
         $bookings = $bookingsService->getBookings();
-        
+
         // Get html :
         foreach ($bookings as $booking) {
             $html .=
@@ -88,12 +89,12 @@ class BookingsController
                 $_POST['booking_id'],
                 $_POST['payment_method']
             );
-            
+
             $isOk = true;
             if ($bookingId && $isOk) {
 
                 if (!empty($_POST['users'])) {
-         
+
                     foreach ($_POST['users'] as $userId) {
                         $isOk = $BookingService->setBookingUser($bookingId, $userId);
                     }
@@ -106,8 +107,8 @@ class BookingsController
                 }
 
                 $html = 'La réservation a été modifier avec succès.';
-                
-            }else{
+
+            } else {
                 $html = 'Erreur lors de la réservation.';
             }
         }

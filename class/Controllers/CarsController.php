@@ -14,11 +14,13 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['brand']) && $_POST['brand'] != "" &&
+        if (
+            isset($_POST['brand']) && $_POST['brand'] != "" &&
             isset($_POST['model']) && $_POST['model'] != "" &&
             isset($_POST['color']) && $_POST['color'] != "" &&
-            isset($_POST['nbrSlots']) && $_POST['nbrSlots'] != "") {
-                
+            isset($_POST['nbrSlots']) && $_POST['nbrSlots'] != ""
+        ) {
+
             // Create the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
@@ -70,11 +72,13 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['car_id']) && $_POST['car_id'] != "" && 
+        if (
+            isset($_POST['car_id']) && $_POST['car_id'] != "" &&
             isset($_POST['brand']) &&
             isset($_POST['model']) &&
             isset($_POST['color']) &&
-            isset($_POST['nbrSlots'])) {
+            isset($_POST['nbrSlots'])
+        ) {
             // Update the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
