@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = '';
+    const MYSQL_PASSWORD = 'root';
 
     private $connection;
 
@@ -462,17 +462,17 @@ class DataBaseService
     }
 
     /**
-     * Create relation between a post and his car.
+     * Create relation between a post and his booking.
      */
-    public function setPostCar(string $postId, string $carId): bool
+    public function setPostBooking(string $postId, string $bookingId): bool
     {
         $isOk = false;
 
         $data = [
             'postId' => $postId,
-            'carId' => $carId,
+            'bookingId' => $bookingId,
         ];
-        $sql = 'INSERT INTO posts_cars (post_id, car_id) VALUES (:postId, :carId)';
+        $sql = 'INSERT INTO posts_bookings (post_id, booking_id) VALUES (:postId, :bookingId)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -480,27 +480,27 @@ class DataBaseService
     }
 
     /**
-     * Get cars of given user id.
+     * Get bookings of given user id.
      */
-    public function getPostCars(string $postId): array
+    public function getPostBookings(string $postId): array
     {
-        $postCars = [];
+        $postBooking = [];
 
         $data = [
             'postId' => $postId,
         ];
         $sql = '
-            SELECT c.*
-            FROM cars as c
-            LEFT JOIN posts_cars as pc ON pc.car_id = c.car_id
-            WHERE pc.post_id = :postId';
+            SELECT b.*
+            FROM bookings as b
+            LEFT JOIN posts_bookings as pb ON pb.booking_id = c.booking_id
+            WHERE pb.post_id = :postId';
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if (!empty($results)) {
-            $postCars = $results;
+            $postBooking = $results;
         }
 
-        return $postCars;
+        return $postBooking;
     }
 }
