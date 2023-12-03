@@ -81,16 +81,17 @@ class CarpoolPost
         return $this->cars;
     }
 
-    public function setCars(string $cars)
+    public function setCars(array $cars): void
     {
         $this->cars = $cars;
+    }
 
     public function getBookings(): ?array
     {
         return $this->bookings;
     }
 
-    public function setBookings(string $bookings)
+    public function setBookings(array $bookings)
     {
         $this->bookings = $bookings;
 

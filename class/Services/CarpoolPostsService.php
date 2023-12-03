@@ -112,7 +112,7 @@ class CarpoolPostsService
        $postBookings = [];
       
        // Get relation posts and bookings :    
-      
+       $dataBaseService = new DataBaseService();
        $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
         if (!empty($postsBookingsDTO)) {
             foreach ($postsBookingsDTO as $postBookingDTO) {
