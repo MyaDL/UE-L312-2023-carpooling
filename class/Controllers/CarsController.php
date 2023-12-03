@@ -14,10 +14,10 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['brand']) &&
-            isset($_POST['model']) &&
-            isset($_POST['color']) &&
-            isset($_POST['door'])) {
+        if (isset($_POST['brand']) && $_POST['brand'] != "" &&
+            isset($_POST['model']) && $_POST['model'] != "" &&
+            isset($_POST['color']) && $_POST['color'] != "" &&
+            isset($_POST['nbrSlots']) && $_POST['nbrSlots'] != "") {
                 
             // Create the car :
             $carsService = new CarsService();
@@ -26,7 +26,7 @@ class CarsController
                 $_POST['brand'],
                 $_POST['model'],
                 $_POST['color'],
-                $_POST['door']
+                $_POST['nbrSlots']
             );
             if ($isOk) {
                 $html = 'La voiture a été créé avec succès.';
@@ -70,19 +70,19 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id']) &&
+        if (isset($_POST['car_id']) && $_POST['car_id'] != "" && 
             isset($_POST['brand']) &&
             isset($_POST['model']) &&
             isset($_POST['color']) &&
-            isset($_POST['door'])) {
+            isset($_POST['nbrSlots'])) {
             // Update the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
-                $_POST['id'],
+                $_POST['car_id'],
                 $_POST['brand'],
                 $_POST['model'],
                 $_POST['color'],
-                $_POST['door']
+                $_POST['nbrSlots']
             );
             if ($isOk) {
                 $html = 'La voiture a été mise à jour avec succès.';
@@ -102,10 +102,10 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id'])) {
+        if (isset($_POST['car_id']) && $_POST['car_id'] != "") {
             // Delete the car :
             $carsService = new CarsService();
-            $isOk = $carsService->deleteCar($_POST['id']);
+            $isOk = $carsService->deleteCar($_POST['car_id']);
             if ($isOk) {
                 $html = 'La voiture a été supprimée avec succès.';
             } else {

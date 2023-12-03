@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Services\BookingsService;
+use App\Services\UsersService;
 
 class BookingsController
 {
@@ -13,17 +14,37 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['payment_method'])) {
+        if (
+            isset($_POST['payment_method']) && $_POST['payment_method'] != "" &&
+            isset($_POST['users']) && $_POST['users'] != ""
+            ) {
                 
             // Create the Booking :
             $BookingService = new BookingsService();
-            $isOk = $BookingService->setBooking(
+            $bookingId = $BookingService->setBooking(
                 null,
                 $_POST['payment_method']
             );
-            if ($isOk) {
+            
+            $isOk = true;
+            if ($bookingId && $isOk) {
+
+                if (!empty($_POST['users'])) {
+         
+                    foreach ($_POST['users'] as $userId) {
+                        $isOk = $BookingService->setBookingUser($bookingId, $userId);
+                    }
+                }
+
+                if (!empty($_POST['posts'])) {
+                    foreach ($_POST['posts'] as $postId) {
+                        $isOk = $BookingService->setBookingPost($bookingId, $postId);
+                    }
+                }
+
                 $html = 'La réservation a été créé avec succès.';
-            } else {
+                
+            }else{
                 $html = 'Erreur lors de la réservation.';
             }
         }
@@ -60,17 +81,34 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id']) && isset($_POST['payment_method'])) {
+        if (isset($_POST['booking_id']) && isset($_POST['payment_method'])) {
             // Update the booking :
-            $bookingsService = new BookingsService();
-            $isOk = $bookingsService->setBooking(
-                $_POST['id'],
+            $BookingService = new BookingsService();
+            $bookingId = $BookingService->setBooking(
+                $_POST['booking_id'],
                 $_POST['payment_method']
             );
-            if ($isOk) {
-                $html = 'La réservation a été mise à jour avec succès.';
-            } else {
-                $html = 'Erreur lors de la mise à jour de la réservation.';
+            
+            $isOk = true;
+            if ($bookingId && $isOk) {
+
+                if (!empty($_POST['users'])) {
+         
+                    foreach ($_POST['users'] as $userId) {
+                        $isOk = $BookingService->setBookingUser($bookingId, $userId);
+                    }
+                }
+
+                if (!empty($_POST['posts'])) {
+                    foreach ($_POST['posts'] as $postId) {
+                        $isOk = $BookingService->setBookingPost($bookingId, $postId);
+                    }
+                }
+
+                $html = 'La réservation a été modifier avec succès.';
+                
+            }else{
+                $html = 'Erreur lors de la réservation.';
             }
         }
 
@@ -85,7 +123,7 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id'])) {
+        if (isset($_POST['id']) && $_POST['id'] != "") {
             // Delete the booking :
             $bookingsService = new BookingsService();
             $isOk = $bookingsService->deleteBooking($_POST['id']);

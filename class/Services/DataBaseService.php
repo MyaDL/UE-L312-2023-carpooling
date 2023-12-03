@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'root';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
@@ -33,9 +33,10 @@ class DataBaseService
     /**
      * Create an user.
      */
-    public function createUser(string $firstname, string $lastname, string $email, DateTime $birthday): bool
+    public function createUser(string $firstname, string $lastname, string $email, DateTime $birthday): ?int
     {
-        $isOk = false;
+    
+        $isOk = null;
 
         $data = [
             'firstname' => $firstname,
@@ -47,7 +48,11 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        if($isOk){
+            $userId = (int)$this->connection->lastInsertId();
+        }
+   
+        return $userId;
     }
 
     /**
@@ -75,13 +80,13 @@ class DataBaseService
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'user_id' => $id,
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => $email,
             'birthday' => $birthday->format(DateTime::RFC3339),
         ];
-        $sql = 'UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, birthday = :birthday WHERE id = :id;';
+        $sql = 'UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, birthday = :birthday WHERE user_id = :user_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -96,9 +101,9 @@ class DataBaseService
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'user_id' => $id,
         ];
-        $sql = 'DELETE FROM users WHERE id = :id;';
+        $sql = 'DELETE FROM users WHERE user_id = :user_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -108,7 +113,7 @@ class DataBaseService
      /**
      * Create an car.
      */
-    public function createCar(string $brand, string $model, string $color, string $door): bool
+    public function createCar(string $brand, string $model, string $color, string $nbrSlots): bool
     {
         $isOk = false;
 
@@ -116,9 +121,9 @@ class DataBaseService
             'brand' => $brand,
             'model' => $model,
             'color' => $color,
-            'door' => $door,
+            'nbrSlots' => $nbrSlots,
         ];
-        $sql = 'INSERT INTO cars (brand, model, color, door) VALUES (:brand, :model, :color, :door)';
+        $sql = 'INSERT INTO cars (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -145,18 +150,18 @@ class DataBaseService
     /**
      * Update an car.
      */
-    public function updateCar(string $id, string $brand, string $model, string $color, string $door): bool
+    public function updateCar(string $id, string $brand, string $model, string $color, string $nbrSlots): bool
     {
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'car_id' => $id,
             'brand' => $brand,
             'model' => $model,
             'color' => $color,
-            'door' => $door,
+            'nbrSlots' => $nbrSlots,
         ];
-        $sql = 'UPDATE cars SET brand = :brand, model = :model, color = :color, door = :door WHERE id = :id;';
+        $sql = 'UPDATE cars SET brand = :brand, model = :model, color = :color, nbrSlots = :nbrSlots WHERE car_id = :car_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -171,9 +176,9 @@ class DataBaseService
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'car_id' => $id,
         ];
-        $sql = 'DELETE FROM cars WHERE id = :id;';
+        $sql = 'DELETE FROM cars WHERE car_id = :car_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -183,22 +188,26 @@ class DataBaseService
     /**
      * Create carpool post
      */
-    public function createCarpoolPost(string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    public function createCarpoolPost(string $price, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): ?int
     {
-        $isOk = false;
+        $isOk = null;
 
         $data = [
-            'creator_id' => $creatorId,
+            'price' => $price,
             'start_address' => $startAddress,
             'arrival_address' => $arrivalAddress,
             'start_date_time' => $startDateTime->format(DateTime::RFC3339),
             'message' => $message,
         ];
-        $sql = 'INSERT INTO posts (creator_id, start_address, arrival_address, start_date_time, message) VALUES (:creator_id, :start_address, :arrival_address, :start_date_time, :message)';
+        $sql = 'INSERT INTO posts (price, start_address, arrival_address, start_date_time, message) VALUES (:price, :start_address, :arrival_address, :start_date_time, :message)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        if($isOk){
+            $postId = (int)$this->connection->lastInsertId();
+        }
+   
+        return $postId;
     }
 
     /**
@@ -221,19 +230,19 @@ class DataBaseService
     /**
      * Update a carpool post.
      */
-    public function updateCarpoolPost(string $id, string $creatorId, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    public function updateCarpoolPost(string $id, string $price, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
     {
         $isOk = false;
 
         $data = [
-            'id' => $id,
-            'creator_id' => $creatorId,
+            'post_id' => $id,
+            'price' => $price,
             'start_address' => $startAddress,
             'arrival_address' => $arrivalAddress,
             'start_date_time' => $startDateTime->format(DateTime::RFC3339),
             'message' => $message,
         ];
-        $sql = 'UPDATE posts SET creator_id =:creator_id, start_address = :start_address, arrival_address = :arrival_address, start_date_time = :start_date_time, message = :message WHERE id = :id;';
+        $sql = 'UPDATE posts SET price =:price, start_address = :start_address, arrival_address = :arrival_address, start_date_time = :start_date_time, message = :message WHERE post_id = :post_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -248,9 +257,9 @@ class DataBaseService
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'post_id' => $id,
         ];
-        $sql = 'DELETE FROM posts WHERE id = :id;';
+        $sql = 'DELETE FROM posts WHERE post_id = :post_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -260,9 +269,9 @@ class DataBaseService
     /**
      * Create booking
      */
-    public function createBooking(string $paymentMethod): bool
+    public function createBooking(string $paymentMethod): int
     {
-        $isOk = false;
+        $bookingId = null;
 
         $data = [
             'payment_method' => $paymentMethod
@@ -271,7 +280,11 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        if($isOk){
+            $bookingId = (int)$this->connection->lastInsertId();
+        }
+
+        return $bookingId;
     }
 
     /**
@@ -296,13 +309,14 @@ class DataBaseService
      */
     public function updateBooking(int $id, string $paymentMethod): bool
     {
-        $isOk = false;
+        $isOk = null;
 
         $data = [
-            'id' => $id,
+            'booking_id' => $id,
             'payment_method' => $paymentMethod
         ];
-        $sql = 'UPDATE bookings SET payment_method = :payment_method WHERE id = :id;';
+
+        $sql = 'UPDATE bookings SET payment_method = :payment_method WHERE booking_id = :booking_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -317,9 +331,9 @@ class DataBaseService
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'booking_id' => $id,
         ];
-        $sql = 'DELETE FROM bookings WHERE id = :id;';
+        $sql = 'DELETE FROM bookings WHERE booking_id = :booking_id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -381,6 +395,35 @@ class DataBaseService
             'postId' => $postId,
         ];
         $sql = 'INSERT INTO users_posts (user_id, post_id) VALUES (:userId, :postId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    public function setBookingPost(string $bookingId, string $postId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'bookingId' => $bookingId,
+            'postId' => $postId,
+        ];
+        $sql = 'INSERT INTO posts_bookings (booking_id, post_id) VALUES (:bookingId, :postId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+    public function setBookingUser(string $bookingId, string $userId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'bookingId' => $bookingId,
+            'userId' => $userId,
+        ];
+        $sql = 'INSERT INTO users_bookings (booking_id, user_id) VALUES (:bookingId, :userId)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -532,7 +575,7 @@ class DataBaseService
         $sql = '
             SELECT b.*
             FROM bookings as b
-            LEFT JOIN posts_bookings as pb ON pb.booking_id = c.booking_id
+            LEFT JOIN posts_bookings as pb ON pb.booking_id = b.booking_id
             WHERE pb.post_id = :postId';
 
         $query = $this->connection->prepare($sql);

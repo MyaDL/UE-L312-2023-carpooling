@@ -15,17 +15,18 @@ class UsersService
      */
     public function setUser(?string $id, string $firstname, string $lastname, string $email, string $birthday): string
     {
-        $userId = '';
+        $userId = null;
 
         $dataBaseService = new DataBaseService();
         $birthdayDateTime = new DateTime($birthday);
+     
         if (empty($id)) {
             $userId = $dataBaseService->createUser($firstname, $lastname, $email, $birthdayDateTime);
         } else {
             $dataBaseService->updateUser($id, $firstname, $lastname, $email, $birthdayDateTime);
-            $userId = $id;
+            $userId = (int) $id;
         }
-
+      
         return $userId;
     }
 
@@ -123,7 +124,7 @@ class UsersService
     }
 
      /**
-     * Create relation between an user and his post.
+     * Create relation bewteen an user and his post.
      */
     public function setUserPost(string $userId, string $postId): bool
     {

@@ -19,8 +19,8 @@ echo $controller->createCar();
     <label for="color">Couleur :</label>
     <input type="text" name="color">
     <br />
-    <label for="door">Nombre de portes :</label>
-    <input type="number" name="door">
+    <label for="nbrSlots">Nombre de portes :</label>
+    <input type="number" name="nbrSlots">
     <br />
     <input type="submit" value="Créer une voiture">
 </form>

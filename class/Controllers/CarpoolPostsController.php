@@ -14,7 +14,7 @@ class CarpoolPostsController
         $html = '';
 
         //If the form have been submitted
-        if (isset($_POST['creator_id']) &&
+        if (isset($_POST['price']) &&
             isset($_POST['start_address']) &&
             isset($_POST['arrival_address']) &&
             isset($_POST['start_date_time']) &&
@@ -24,30 +24,30 @@ class CarpoolPostsController
             $carpoolPostsService = new CarpoolPostsService();
             $postId = $carpoolPostsService->setCarpoolPost(
                 null,
-                $_POST['creator_id'],
+                $_POST['price'],
                 $_POST['start_address'],
                 $_POST['arrival_address'],
                 $_POST['start_date_time'],
                 $_POST['message']
             );
-        }
-            // Create the post cars relations :
+
             $isOk = true;
-            if (!empty($_POST['cars'])) {
-                foreach ($_POST['cars'] as $carId) {
-                    $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+            if ($postId && $isOk) {
+                 // Create the post cars relations :
+                if (!empty($_POST['cars'])) {
+                    foreach ($_POST['cars'] as $carId) {
+                        $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+                    }
+                }
+                // Create the post bookings relations :
+                if (!empty($_POST['bookings'])) {
+                    foreach ($_POST['bookings'] as $bookingId) {
+                        $isOk = $carpoolPostsService->setPostBooking($postId, $bookingId);
+                    }
                 }
 
-            // Create the post bookings relations :
-            $isOk = true;
-            if (!empty($_POST['bookings'])) {
-                foreach ($_POST['bookings'] as $bookingId) {
-                    $isOk = $carpoolPostsService->setPostBooking($postId, $bookingId);
-                }
-            }
-            if ($isOk) {
                 $html = 'Annonce créée avec succès';
-            } else {
+            }else{
                 $html = 'Erreur lors de la création de l\'annonce';
             }
         }
@@ -77,7 +77,7 @@ class CarpoolPostsController
             $bookingsHtml = '';
             if (!empty($carpoolPost->getBookings())) {
                 foreach ($carpoolPost->getBookings() as $booking) {
-                    $bookingHtml .= '<li>#' .  $booking->getId() . ' ' . $booking->getPaymentMethod() . '</li><br>';
+                    $bookingsHtml .= '<li>#' .  $booking->getId() . ' ' . $booking->getPaymentMethod() . '</li><br>';
                 }
             }
             $html .=
@@ -88,7 +88,7 @@ class CarpoolPostsController
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .
                 $carpoolPost->getMessage() . ' ' .
                 $carsHtml . ' ' .
-                $bookingHtml . '<br/> ';
+                $bookingsHtml . '<br/> ';
         }
 
         return $html;
@@ -102,26 +102,36 @@ class CarpoolPostsController
         $html = '';
 
         //If the form have been submitted
-        if (isset($_POST['id']) &&
-            isset($_POST['creator_id']) &&
+        if (isset($_POST['post_id']) && $_POST['post_id'] != "" &&
+            isset($_POST['price']) &&
             isset($_POST['start_address']) &&
             isset($_POST['arrival_address']) &&
             isset($_POST['start_date_time']) &&
-            isset($_POST['message'])) {
-            //Update the carpool post
+            isset($_POST['message']) &&
+            isset($_POST['cars'])) {
+            //Create the post
             $carpoolPostsService = new CarpoolPostsService();
-            $isOk = $carpoolPostsService->setCarpoolPost(
-                $_POST['id'],
-                $_POST['creator_id'],
+            $postId = $carpoolPostsService->setCarpoolPost(
+                $_POST['post_id'],
+                $_POST['price'],
                 $_POST['start_address'],
                 $_POST['arrival_address'],
                 $_POST['start_date_time'],
                 $_POST['message']
             );
-            if ($isOk) {
-                $html = 'Annonce mise à jour avec succès';
-            } else {
-                $html = 'Erreur lors de la mise à jour de l\'annonce';
+
+            $isOk = true;
+            if ($postId && $isOk) {
+                 // Create the post cars relations :
+                if (!empty($_POST['cars'])) {
+                    foreach ($_POST['cars'] as $carId) {
+                        $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+                    }
+                }
+
+                $html = 'Annonce modifiée avec succès';
+            }else{
+                $html = 'Erreur lors de la création de l\'annonce';
             }
         }
 

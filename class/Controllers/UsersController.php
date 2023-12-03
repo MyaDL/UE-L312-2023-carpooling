@@ -12,14 +12,12 @@ class UsersController
     public function createUser(): string
     {
         $html = '';
-
+       
         // If the form have been submitted :
-        if (isset($_POST['firstname']) &&
-            isset($_POST['lastname']) &&
-            isset($_POST['email']) &&
-            isset($_POST['birthday']) &&
-            isset($_POST['cars']) &&
-            isset($_POST['posts'])) {
+        if (isset($_POST['firstname']) && $_POST['firstname'] != "" &&
+            isset($_POST['lastname']) && $_POST['lastname'] != "" &&
+            isset($_POST['email']) && $_POST['email'] != "" &&
+            isset($_POST['birthday']) && $_POST['birthday'] != "") {
             // Create the user :
             $usersService = new UsersService();
             $userId = $usersService->setUser(
@@ -29,22 +27,25 @@ class UsersController
                 $_POST['email'],
                 $_POST['birthday']
             );
-
-            // Create the user cars relations :
             $isOk = true;
-            if (!empty($_POST['cars'])) {
-                foreach ($_POST['cars'] as $carId) {
-                    $isOk = $usersService->setUserCar($userId, $carId);
-                }
-            }
-            if (!empty($_POST['posts'])) {
-                foreach ($_POST['posts'] as $postId) {
-                    $isOk = $usersService->setUserPost($userId, $postId);
-                }
-            }
             if ($userId && $isOk) {
+            
+                // Create the user cars relations :
+    
+                if (!empty($_POST['cars'])) {
+                    foreach ($_POST['cars'] as $carId) {
+                        $isOk = $usersService->setUserCar($userId, $carId);
+                    }
+                }
+                if (!empty($_POST['posts'])) {
+                    foreach ($_POST['posts'] as $postId) {
+                        $isOk = $usersService->setUserPost($userId, $postId);
+                    }
+                }
+
                 $html = 'Utilisateur créé avec succès.';
-            } else {
+                
+            }else{
                 $html = 'Erreur lors de la création de l\'utilisateur.';
             }
         }
@@ -111,7 +112,7 @@ class UsersController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id']) &&
+        if (isset($_POST['id']) && 
             isset($_POST['firstname']) &&
             isset($_POST['lastname']) &&
             isset($_POST['email']) &&
@@ -143,7 +144,7 @@ class UsersController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id'])) {
+        if (isset($_POST['id']) && $_POST['id'] != "") {
             // Delete the user :
             $usersService = new UsersService();
             $isOk = $usersService->deleteUser($_POST['id']);

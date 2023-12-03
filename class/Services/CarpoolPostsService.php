@@ -13,19 +13,19 @@ class CarpoolPostsService
     /**
      * Create or update a carpool post
      */
-    public function setCarpoolPost(?string $id, string $price, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): bool
+    public function setCarpoolPost(?string $id, string $price, string $startAddress, string $arrivalAddress, string $startDateTime, string $message): string
     {
-        $isOk = false;
+        $postId = null;
 
         $dataBaseService = new DataBaseService();
         $startDateTime = new DateTime($startDateTime);
         if (empty($id)) {
-            $isOk = $dataBaseService->createCarpoolPost($price, $startAddress, $arrivalAddress, $startDateTime, $message);
+            $postId = $dataBaseService->createCarpoolPost($price, $startAddress, $arrivalAddress, $startDateTime, $message);
         } else {
-            $isOk = $dataBaseService->updateCarpoolPost($id, $price, $startAddress, $arrivalAddress, $startDateTime, $message);
+            $postId = $dataBaseService->updateCarpoolPost($id, $price, $startAddress, $arrivalAddress, $startDateTime, $message);
         }
 
-        return $isOk;
+        return $postId;
     }
 
     /**
