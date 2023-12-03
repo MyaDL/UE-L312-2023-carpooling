@@ -20,8 +20,8 @@ $bookings = $bookingsService->getBookings();
 
 <p>Création d'une annonce</p>
 <form method="post" action="carpool_posts_create.php" name="carpoolPostCreateForm">
-    <label for="creator_id">Identifiant du créateur :</label>
-    <input type="text" name="creator_id">
+    <label for="price">Prix :</label>
+    <input type="text" name="price">
     <br />
     <label for="start_address">Adresse de départ :</label>
     <input type="text" name="start_address">
@@ -40,12 +40,7 @@ $bookings = $bookingsService->getBookings();
         <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
         <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
         <?php endforeach; ?>
-    <label for="cars">Réservation(s) :</label>
-    <?php foreach ($bookings as $booking): ?>
-        <?php $bookingId = $booking->getId() . ' ' . $paymentMethod = $booking->getPaymentMethod(); ?>
-        <input type="checkbox" name="bookings[]" value="<?php echo $booking->getId(); ?>"><?php echo $bookingId . ' ' . $paymentMethod; ?>
-        <br />
-    <?php endforeach; ?>
+        <br>
     <br />
     <input type="submit" value="Créer une annonce">
 </form>

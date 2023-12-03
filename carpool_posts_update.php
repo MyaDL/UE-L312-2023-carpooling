@@ -1,20 +1,30 @@
 <?php
 
 use App\Controllers\CarpoolPostsController;
+use App\Services\CarsService;
+use App\Services\BookingsService;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $controller = new CarpoolPostsController();
 echo $controller->updateCarpoolPost();
+
+
+$carsService = new CarsService();
+$cars = $carsService->getCars();
+
+$bookingsService = new BookingsService();
+$bookings = $bookingsService->getBookings();
+
 ?>
 
-<p>Mise à jour d'une annonce</p>
-<form method="post" action="carpool_posts_update.php" name ="userUpdateForm">
-    <label for="id">Id :</label>
-    <input type="text" name="id">
-    <br />
-    <label for="creator_id">Id du créateur :</label>
-    <input type="text" name="creator_id">
+<p>Modification d'une annonce</p>
+<form method="post" action="carpool_posts_update.php" name="carpoolUpdateCreateForm">
+    <label for="post_id">Id de l'annonce :</label>
+    <input type="text" name="post_id">
+    <br /><br>
+    <label for="price">Prix :</label>
+    <input type="text" name="price">
     <br />
     <label for="start_address">Adresse de départ :</label>
     <input type="text" name="start_address">
@@ -28,5 +38,12 @@ echo $controller->updateCarpoolPost();
     <label for="message">Message :</label>
     <input type="text" name="message">
     <br />
-    <input type="submit" value="Modifier l'annonce">
+    <label for="cars">Voiture(s) :</label>
+    <?php foreach ($cars as $car): ?>
+        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
+        <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+        <?php endforeach; ?>
+        <br>
+    <br />
+    <input type="submit" value="Modifier une annonce">
 </form>

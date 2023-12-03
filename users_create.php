@@ -1,6 +1,8 @@
 <?php
 
 use App\Controllers\UsersController;
+use App\Services\BookingsService;
+use App\Services\CarpoolPostsService;
 use App\Services\CarsService;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -10,6 +12,9 @@ echo $controller->createUser();
 
 $carsService = new CarsService();
 $cars = $carsService->getCars();
+
+$postsService = new CarpoolPostsService();
+$posts = $postsService->getCarpoolPosts();
 ?>
 
 <p>Création d'un utilisateur</p>
@@ -23,13 +28,23 @@ $cars = $carsService->getCars();
     <label for="email">Email :</label>
     <input type="text" name="email">
     <br />
-    <label for="birthday">Date d'anniversaire au format dd-mm-yyyy :</label>
+    <label for="birthday">Date d'anniversaire au format YYYY-MM-DD :</label>
     <input type="text" name="birthday">
     <br />
     <label for="cars">Voiture(s) :</label>
     <?php foreach ($cars as $car): ?>
         <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
         <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+        <br />
+    <?php endforeach; ?>
+    <br />
+    <label for="posts">Annonces(s) :</label><br>
+    <?php foreach ($posts as $post): ?>
+        <?php 
+            $startDateTime = $post->getStartDateTime();
+            $startDateTimeAsString = $startDateTime->format('Y-m-d H:i:s');
+            $postName = $post->getStartAddress() . ' ' . $post->getArrivalAddress() . ' ' . $startDateTimeAsString . ' ' . $post->getPrice(); ?>
+        <input type="checkbox" name="posts[]" value="<?php echo $post->getId(); ?>"><?php echo $postName; ?>
         <br />
     <?php endforeach; ?>
     <br />
