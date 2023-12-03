@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
-use App\Services\BookingService;
 use App\Services\BookingsService;
 
 class BookingsController
@@ -15,18 +13,12 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['driver_id']) &&
-            isset($_POST['tel']) &&
-            isset($_POST['price']) &&
-            isset($_POST['payment_method'])) {
+        if (isset($_POST['payment_method'])) {
                 
             // Create the Booking :
             $BookingService = new BookingsService();
             $isOk = $BookingService->setBooking(
                 null,
-                $_POST['driver_id'],
-                $_POST['tel'],
-                $_POST['price'],
                 $_POST['payment_method']
             );
             if ($isOk) {
@@ -54,9 +46,6 @@ class BookingsController
         foreach ($bookings as $booking) {
             $html .=
                 '#' . $booking->getId() . ' ' .
-                $booking->getDriverId() . ' ' .
-                $booking->getTel() . ' ' .
-                $booking->getPrice() . ' ' .
                 $booking->getPaymentMethod() . '<br />';
         }
 
@@ -71,18 +60,11 @@ class BookingsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id']) &&
-            isset($_POST['driver_id']) &&
-            isset($_POST['tel']) &&
-            isset($_POST['price']) &&
-            isset($_POST['payment_method'])) {
+        if (isset($_POST['id']) && isset($_POST['payment_method'])) {
             // Update the booking :
             $bookingsService = new BookingsService();
             $isOk = $bookingsService->setBooking(
                 $_POST['id'],
-                $_POST['driver_id'],
-                $_POST['tel'],
-                $_POST['price'],
                 $_POST['payment_method']
             );
             if ($isOk) {

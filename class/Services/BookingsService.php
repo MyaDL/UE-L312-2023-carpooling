@@ -9,15 +9,15 @@ class BookingsService
     /**
      * Create or update a booking
      */
-    public function setBooking(?string $id, string $driverId, string $tel, string $price, string $paymentMethod): bool
+    public function setBooking(?string $id, string $paymentMethod): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         if (empty($id)) {
-            $isOk = $dataBaseService->createBooking($driverId, $tel, $price, $paymentMethod);
+            $isOk = $dataBaseService->createBooking($paymentMethod);
         } else {
-            $isOk = $dataBaseService->updateBooking($id, $driverId, $tel, $price, $paymentMethod);
+            $isOk = $dataBaseService->updateBooking($id, $paymentMethod);
         }
 
         return $isOk;
@@ -33,16 +33,14 @@ class BookingsService
 
         $dataBaseService = new DataBaseService();
         $bookingsDTO = $dataBaseService->getBookings();
+
         if (!empty($bookingsDTO)) {
             foreach ($bookingsDTO as $bookingDTO) {
                 $booking = new Booking();
-                $booking->setId($bookingDTO['id']);
-                $booking->setDriverId($bookingDTO['driver_id']);
-                $booking->setTel($bookingDTO['tel']);
-                $booking->setPrice($bookingDTO['price']);
+                $booking->setId($bookingDTO['booking_id']);
                 $booking->setPaymentMethod($bookingDTO['payment_method']);
+                $bookings[] = $booking;
             }
-            $bookings[] = $booking;
         }
 
         return $bookings;
