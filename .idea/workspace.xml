@@ -11,6 +11,8 @@
       <change beforePath="$PROJECT_DIR$/class/Entities/CarpoolPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Entities/CarpoolPost.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Services/CarpoolPostsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/CarpoolPostsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Services/DataBaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/DataBaseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Services/UsersService.php" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="main" />
         <entry key="$PROJECT_DIR$" value="relation-post-booking" />
       </map>
     </option>
@@ -77,6 +80,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "relation-post-car",
     "git-widget-placeholder": "relation-post-booking",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

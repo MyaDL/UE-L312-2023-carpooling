@@ -31,6 +31,12 @@ class CarpoolPostsController
                 $_POST['message']
             );
 
+            // Create the post cars relations :
+            $isOk = true;
+            if (!empty($_POST['cars'])) {
+                foreach ($_POST['cars'] as $carId) {
+                    $isOk = $carpoolPostsService->setPostCar($postId, $carId);
+
             // Create the post bookings relations :
             $isOk = true;
             if (!empty($_POST['bookings'])) {
@@ -61,6 +67,10 @@ class CarpoolPostsController
 
         //Get html
         foreach ($carpoolPosts as $carpoolPost) {
+            $carsHtml = '';
+            if (!empty($carpoolPost->getCars())) {
+                foreach ($carpoolPost->getCars() as $car) {
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
             $bookingsHtml = '';
             if (!empty($carpoolPost->getBookings())) {
                 foreach ($carpoolPost->getBookings() as $booking) {
@@ -74,7 +84,8 @@ class CarpoolPostsController
                 $carpoolPost->getArrivalAddress() . ' ' .
                 $carpoolPost->getStartDateTime()->format('Y-m-d H:i:s') . ' ' .
                 $carpoolPost->getMessage() . ' ' .
-                ' ' .$bookingHtml . '<br/> ';
+                $carsHtml . ' ' .
+                $bookingHtml . '<br/> ';
         }
 
         return $html;

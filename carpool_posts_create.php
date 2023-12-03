@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\CarpoolPostsController;
+use App\Services\CarsService;
 use App\Services\BookingsService;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -8,8 +9,13 @@ require __DIR__ . '/vendor/autoload.php';
 $controller = new CarpoolPostsController();
 echo $controller->createCarpoolPost();
 
+
+$carsService = new CarsService();
+$cars = $carsService->getCars();
+
 $bookingsService = new BookingsService();
 $bookings = $bookingsService->getBookings();
+
 ?>
 
 <p>Création d'une annonce</p>
@@ -29,6 +35,10 @@ $bookings = $bookingsService->getBookings();
     <label for="message">Message :</label>
     <input type="text" name="message">
     <br />
+    <label for="cars">Voiture(s) :</label>
+    <?php foreach ($cars as $car): ?>
+        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(); ?>
+        <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
     <label for="cars">Réservation(s) :</label>
     <?php foreach ($bookings as $booking): ?>
         <?php $bookingId = $booking->getId() . ' ' . $paymentMethod = $booking->getPaymentMethod(); ?>

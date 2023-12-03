@@ -12,6 +12,7 @@ class CarpoolPost
     private $arrivalAddress;
     private $startDateTime;
     private $message;
+    private $cars;
     private $bookings;
 
 
@@ -74,6 +75,16 @@ class CarpoolPost
     {
         $this->message = $message;
     }
+
+    public function getCars(): ?array
+    {
+        return $this->cars;
+    }
+
+    public function setCars(string $cars)
+    {
+        $this->cars = $cars;
+
     public function getBookings(): ?array
     {
         return $this->bookings;
