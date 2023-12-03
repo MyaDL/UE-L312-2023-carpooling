@@ -10,8 +10,8 @@ echo $controller->updateUser();
 
 <p>Mise à jour d'un utilisateur</p>
 <form method="post" action="users_update.php" name ="userUpdateForm">
-    <label for="id">Id :</label>
-    <input type="text" name="id">
+    <label for="booking_id">Id :</label>
+    <input type="text" name="booking_id">
     <br />
     <label for="firstname">Prénom :</label>
     <input type="text" name="firstname">

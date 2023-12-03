@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'password';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
@@ -75,9 +75,10 @@ class DataBaseService
     /**
      * Update an user.
      */
-    public function updateUser(string $id, string $firstname, string $lastname, string $email, DateTime $birthday): bool
+    public function updateUser(int $id, string $firstname, string $lastname, string $email, DateTime $birthday): int
     {
         $isOk = false;
+        $userId = $id;
 
         $data = [
             'user_id' => $id,
@@ -90,7 +91,7 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        return $id;
     }
 
     /**
@@ -150,9 +151,10 @@ class DataBaseService
     /**
      * Update an car.
      */
-    public function updateCar(string $id, string $brand, string $model, string $color, string $nbrSlots): bool
+    public function updateCar(int $id, string $brand, string $model, string $color, string $nbrSlots): int
     {
         $isOk = false;
+        $carId = $id;
 
         $data = [
             'car_id' => $id,
@@ -165,7 +167,7 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        return $carId;
     }
 
     /**
@@ -230,9 +232,9 @@ class DataBaseService
     /**
      * Update a carpool post.
      */
-    public function updateCarpoolPost(string $id, string $price, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): bool
+    public function updateCarpoolPost(int $id, string $price, string $startAddress, string $arrivalAddress, DateTime $startDateTime, string $message): int
     {
-        $isOk = false;
+        $postId = $id;
 
         $data = [
             'post_id' => $id,
@@ -246,7 +248,7 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        return $postId;
     }
 
     /**
@@ -307,9 +309,9 @@ class DataBaseService
     /**
      * Update a booking.
      */
-    public function updateBooking(int $id, string $paymentMethod): bool
+    public function updateBooking(int $id, string $paymentMethod): int
     {
-        $isOk = null;
+        $bookingId = $id;
 
         $data = [
             'booking_id' => $id,
@@ -320,7 +322,7 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
-        return $isOk;
+        return $bookingId;
     }
 
     /**
