@@ -18,7 +18,8 @@ class CarpoolPostsController
             isset($_POST['start_address']) &&
             isset($_POST['arrival_address']) &&
             isset($_POST['start_date_time']) &&
-            isset($_POST['message'])) {
+            isset($_POST['message']) &&
+            isset($_POST['cars'])) {
             //Create the post
             $carpoolPostsService = new CarpoolPostsService();
             $postId = $carpoolPostsService->setCarpoolPost(

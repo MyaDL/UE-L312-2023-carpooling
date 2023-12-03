@@ -73,6 +73,7 @@ class CarpoolPostsService
     }
 
     /**
+
      * Get bookings of given post id.
      */
     public function getPostBookings(string $postId): array
@@ -82,6 +83,7 @@ class CarpoolPostsService
         $dataBaseService = new DataBaseService();
 
         // Get relation posts and cars :
+
         $postsBookingsDTO = $dataBaseService->getPostBookings($postId);
         if (!empty($postsBookingsDTO)) {
             foreach ($postsBookingsDTO as $postBookingDTO) {
@@ -105,6 +107,7 @@ class CarpoolPostsService
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
+
         $isOk = $dataBaseService->setPostBooking($userId, $bookingId);
 
         return $isOk;

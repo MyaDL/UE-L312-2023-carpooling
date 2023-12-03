@@ -74,7 +74,6 @@ class CarpoolPost
     {
         $this->message = $message;
     }
-
     public function getBookings(): ?array
     {
         return $this->bookings;
