@@ -49,7 +49,7 @@ class CarpoolPostsController
                 }
 
                 $html = 'Annonce créée avec succès';
-            } else {
+            }else{
                 $html = 'Erreur lors de la création de l\'annonce';
             }
         }
@@ -134,6 +134,7 @@ class CarpoolPostsController
                 }
 
                 $html = 'Annonce modifiée avec succès';
+
             } else {
                 $html = 'Erreur lors de la création de l\'annonce';
             }

@@ -26,7 +26,7 @@ class UsersService
             $dataBaseService->updateUser($id, $firstname, $lastname, $email, $birthdayDateTime);
             $userId = (int) $id;
         }
-
+      
         return $userId;
     }
 

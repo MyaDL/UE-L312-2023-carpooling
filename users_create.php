@@ -48,5 +48,15 @@ $posts = $postsService->getCarpoolPosts();
             <br />
     <?php endforeach; ?>
     <br />
+    <label for="posts">Annonces(s) :</label><br>
+    <?php foreach ($posts as $post): ?>
+        <?php 
+            $startDateTime = $post->getStartDateTime();
+            $startDateTimeAsString = $startDateTime->format('Y-m-d H:i:s');
+            $postName = $post->getStartAddress() . ' ' . $post->getArrivalAddress() . ' ' . $startDateTimeAsString . ' ' . $post->getPrice(); ?>
+        <input type="checkbox" name="posts[]" value="<?php echo $post->getId(); ?>"><?php echo $postName; ?>
+        <br />
+    <?php endforeach; ?>
+    <br />
     <input type="submit" value="Créer un utilisateur">
 </form>

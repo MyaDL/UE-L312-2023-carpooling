@@ -12,7 +12,7 @@ class UsersController
     public function createUser(): string
     {
         $html = '';
-
+       
         // If the form have been submitted :
         if (
             isset($_POST['firstname']) && $_POST['firstname'] != "" &&

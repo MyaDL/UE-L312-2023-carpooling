@@ -14,7 +14,7 @@ class BookingsService
         $bookingId = null;
 
         $dataBaseService = new DataBaseService();
-
+      
         if (empty($id)) {
             $bookingId = $dataBaseService->createBooking($paymentMethod);
         } else {
